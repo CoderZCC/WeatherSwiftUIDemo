@@ -85,7 +85,7 @@ struct AqiView: View {
             }
             Text("\(self.vm.model?.now?.aqi ?? 0)").foregroundColor(Color.white).fontWeight(.semibold)
             Text(self.vm.model?.now?.aqiDesc ?? "").foregroundColor(Color.white).fontWeight(.semibold)
-        }.padding(.init(top: 0.0, leading: 8.0, bottom: 0.0, trailing: 16.0)).frame(width: nil, height: 42.0).background(Color.black.opacity(0.3)).cornerRadius(26.0)
+        }.padding(.init(top: 0.0, leading: 8.0, bottom: 0.0, trailing: 16.0)).frame(height: 42.0).background(Color.black.opacity(0.3)).cornerRadius(26.0)
     }
 }
 
@@ -110,22 +110,22 @@ struct FutureView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Spacer(minLength: 10.0).frame(width: kScreenW - 32.0)
+            Spacer(minLength: 10.0)
             Text("预告").fontWeight(.semibold).modifier(ContentTextModifier()).padding(.init(top: 0.0, leading: 14.0, bottom: 0.0, trailing: 14.0))
-            Divider().background(Color.black)
+            Divider().background(Color.black).frame(width: kScreenW - 32.0)
             
-            HStack {
+            HStack(spacing: 12.0) {
                 Text(self.vm.model?.threeDays?.first?.time ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
                 WebImage(self.vm.model?.threeDays?.first?.thumbImage, configuration: { $0.resizable() }).frame(width: 28.0, height: 28.0).scaledToFit()
                 Text(self.vm.model?.threeDays?.first?.description ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
                 Text(self.vm.model?.threeDays?.first?.tempRange ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
                 Text(self.vm.model?.threeDays?.first?.wind ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
                 Text(self.vm.model?.threeDays?.first?.wind_level ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
-            }.padding(.init(top: 0.0, leading: 14.0, bottom: 0.0, trailing: 14.0))
+            }.padding(.init(top: 5.0, leading: 14.0, bottom: 0.0, trailing: 14.0))
             
             Group {
                 if (self.vm.model?.threeDays?.count ?? 0) >= 3 {
-                    HStack {
+                    HStack(spacing: 12.0) {
                         Text(self.vm.model?.threeDays?[1].time ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
                         WebImage(self.vm.model?.threeDays?[1].thumbImage, configuration: { $0.resizable() }).frame(width: 28.0, height: 28.0).scaledToFit()
                         Text(self.vm.model?.threeDays?[1].description ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
@@ -134,16 +134,16 @@ struct FutureView: View {
                         Text(self.vm.model?.threeDays?[1].wind_level ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
                     }
                 }
-            }.padding(.init(top: 0.0, leading: 14.0, bottom: 0.0, trailing: 14.0))
-
-            HStack {
+            }.padding(.init(top: 5.0, leading: 14.0, bottom: 0.0, trailing: 14.0))
+            
+            HStack(spacing: 12.0) {
                 Text(self.vm.model?.threeDays?.last?.time ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
                 WebImage(self.vm.model?.threeDays?.last?.thumbImage, configuration: { $0.resizable() }).frame(width: 28.0, height: 28.0).scaledToFit()
                 Text(self.vm.model?.threeDays?.last?.description ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
                 Text(self.vm.model?.threeDays?.last?.tempRange ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
                 Text(self.vm.model?.threeDays?.last?.wind ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
                 Text(self.vm.model?.threeDays?.last?.wind_level ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
-            }.padding(.init(top: 0.0, leading: 14.0, bottom: 0.0, trailing: 14.0))
+            }.padding(.init(top: 5.0, leading: 14.0, bottom: 0.0, trailing: 14.0))
             
             Spacer(minLength: 10.0)
         }.background(Color.black.opacity(0.3)).cornerRadius(8.0)
