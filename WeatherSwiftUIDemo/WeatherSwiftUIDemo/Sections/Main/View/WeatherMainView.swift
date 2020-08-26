@@ -27,7 +27,7 @@ struct WeatherMainView: View {
             ScrollView {
                 VStack(alignment: .leading) {
                     AqiView(vm: self._vm)
-                    Spacer(minLength: 10.0).frame(width: kScreenW)
+                    Spacer(minLength: 10.0).frame(width: kScreenW - 32.0)
                     WeatherView(vm: self._vm)
                     
                     HStack(spacing: 10.0) {
@@ -43,7 +43,7 @@ struct WeatherMainView: View {
                 }
             }
             
-        }.foregroundColor(Color.white).background(WebImage(self._vm.model?.now?.skin, configuration: { $0.resizable() }).scaledToFill().edgesIgnoringSafeArea(.all)).offset(x: 16.0, y: 0.0).edgesIgnoringSafeArea(.all).onAppear(perform: self._vm.loadData)
+        }.foregroundColor(Color.white).background(WebImage(self._vm.model?.now?.skin, configuration: { $0.resizable() }).scaledToFill().edgesIgnoringSafeArea(.all)).edgesIgnoringSafeArea(.all).onAppear(perform: self._vm.loadData)
     }
 }
 
