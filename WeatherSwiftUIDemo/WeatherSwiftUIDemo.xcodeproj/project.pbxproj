@@ -20,6 +20,7 @@
 		519872C824F4D31300ADC3F7 /* APIEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519872C724F4D31300ADC3F7 /* APIEnum.swift */; };
 		519872CB24F4DB9400ADC3F7 /* WebImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519872CA24F4DB9400ADC3F7 /* WebImage.swift */; };
 		519872CF24F4E3D200ADC3F7 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519872CE24F4E3D200ADC3F7 /* WeatherViewModel.swift */; };
+		51B4BDB724F6066800BDB382 /* DataTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B4BDB624F6066800BDB382 /* DataTest.swift */; };
 		51E4699524F5F05F009A3D85 /* Color-ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E4699424F5F05F009A3D85 /* Color-ext.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +40,7 @@
 		519872C724F4D31300ADC3F7 /* APIEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnum.swift; sourceTree = "<group>"; };
 		519872CA24F4DB9400ADC3F7 /* WebImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImage.swift; sourceTree = "<group>"; };
 		519872CE24F4E3D200ADC3F7 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
+		51B4BDB624F6066800BDB382 /* DataTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTest.swift; sourceTree = "<group>"; };
 		51E4699424F5F05F009A3D85 /* Color-ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color-ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -159,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				519872C024F4C23A00ADC3F7 /* WeatherMainView.swift */,
+				51B4BDB624F6066800BDB382 /* DataTest.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 				519872BF24F4BE8300ADC3F7 /* APIManager.swift in Sources */,
 				519872C324F4C25500ADC3F7 /* WeatherModel.swift in Sources */,
 				519872AA24F4BD5D00ADC3F7 /* SceneDelegate.swift in Sources */,
+				51B4BDB724F6066800BDB382 /* DataTest.swift in Sources */,
 				519872CF24F4E3D200ADC3F7 /* WeatherViewModel.swift in Sources */,
 				519872C624F4C37900ADC3F7 /* Macro.swift in Sources */,
 				51E4699524F5F05F009A3D85 /* Color-ext.swift in Sources */,
