@@ -148,11 +148,35 @@
 		51E4699624F5F076009A3D85 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				519872C224F4C25500ADC3F7 /* WeatherModel.swift */,
-				519872C024F4C23A00ADC3F7 /* WeatherMainView.swift */,
-				519872CE24F4E3D200ADC3F7 /* WeatherViewModel.swift */,
+				51E4699924F5F2CA009A3D85 /* ViewModel */,
+				51E4699824F5F2C3009A3D85 /* Model */,
+				51E4699724F5F2BD009A3D85 /* View */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		51E4699724F5F2BD009A3D85 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				519872C024F4C23A00ADC3F7 /* WeatherMainView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		51E4699824F5F2C3009A3D85 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				519872C224F4C25500ADC3F7 /* WeatherModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		51E4699924F5F2CA009A3D85 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				519872CE24F4E3D200ADC3F7 /* WeatherViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -372,6 +396,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"WeatherSwiftUIDemo/Preview Content\"";
 				DEVELOPMENT_TEAM = J6VFVU93Z9;
@@ -384,6 +409,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zcc.WeatherSwiftUIDemo;
 				PRODUCT_NAME = weather;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -393,6 +419,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"WeatherSwiftUIDemo/Preview Content\"";
 				DEVELOPMENT_TEAM = J6VFVU93Z9;
@@ -405,6 +432,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zcc.WeatherSwiftUIDemo;
 				PRODUCT_NAME = weather;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

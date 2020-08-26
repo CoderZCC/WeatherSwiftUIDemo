@@ -30,11 +30,7 @@ struct WeatherMainView: View {
                 VStack(alignment: .leading) {
                     AqiView(model: self._vm.model)
                     Spacer(minLength: 10.0)
-                    HStack {
-                        Text(self._vm.model?.temperature ?? "").font(Font.custom("DINCond-Bold", size: 130.0))
-                        WebImage(imgPath: "https://h5tq.moji.com/tianqi/assets/images/weather/w1.png").scaledToFit().frame(width: 100.0, height: 100.0, alignment: .center).offset(x: 0.0, y: 12.0)
-                        Text(self._vm.model?.description ?? "").font(Font.system(size: 30.0)).fontWeight(.semibold).offset(x: 0.0, y: 30.0)
-                    }
+                    WeatherView(model: self._vm.model)
                     
                     HStack {
                         Text(self._vm.model?.humidity ?? "").fontWeight(.semibold)
@@ -50,6 +46,17 @@ struct WeatherMainView: View {
     }
 }
 
+
+struct WeatherView: View {
+    var model: WeatherModel?
+    var body: some View {
+        HStack {
+            Text(self.model?.temperature ?? "").font(Font.custom("DINCond-Bold", size: 130.0))
+            WebImage(imgPath: "https://h5tq.moji.com/tianqi/assets/images/weather/w1.png").scaledToFit().frame(width: 100.0, height: 100.0, alignment: .center).offset(x: 0.0, y: 12.0)
+            Text(self.model?.description ?? "").font(Font.system(size: 30.0)).fontWeight(.semibold).offset(x: 0.0, y: 30.0)
+        }
+    }
+}
 
 // MARK: -天气状况
 struct AqiView: View {
