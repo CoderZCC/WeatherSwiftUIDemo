@@ -10,17 +10,14 @@ import SwiftUI
 
 struct WebImage<Placeholder: View>: View {
     
-    /// 图片加载地址
-    var imgPath: String?
     /// 图片加载器
-    @ObservedObject private var _imageLoader = ImageLoader()
+    @ObservedObject var _imageLoader: ImageLoader
     /// 展位
     private var _placeholder: Placeholder?
     
     init(imgPath: String?, placeholder: Placeholder?) {
-        self.imgPath = imgPath
         self._placeholder = placeholder
-        self._imageLoader.loadUrl = URL(string: imgPath ?? "")
+        self._imageLoader = ImageLoader(loadPath: imgPath)
     }
     
     var body: some View {
@@ -49,14 +46,18 @@ struct WebImage<Placeholder: View>: View {
 class ImageLoader: ObservableObject {
     
     @Published var image: UIImage?
-    var loadUrl: URL?
+    var loadPath: String?
+    
     private var _task: URLSessionTask?
     private var _isLoading: Bool = false
     
+    init(loadPath: String?) {
+        self.loadPath = loadPath
+    }
     
     func load() {
         if self._isLoading { return }
-        guard let url = self.loadUrl else { return }
+        guard let path = self.loadPath, let url = URL(string: path) else { return }
         self._isLoading = true
         self._task = URLSession.shared.dataTask(with: url) { (data, _, error) in
             if let d = data, let img = UIImage(data: d) {
