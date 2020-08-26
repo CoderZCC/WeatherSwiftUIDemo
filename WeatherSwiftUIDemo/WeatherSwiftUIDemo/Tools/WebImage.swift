@@ -8,14 +8,14 @@
 
 import SwiftUI
 
-struct WebImage<Placeholder: View>: View {
+struct WebImage: View {
     
     /// 图片加载器
     @ObservedObject var _imageLoader: ImageLoader
     /// 展位
-    private var _placeholder: Placeholder?
+    private var _placeholder: Text?
     
-    init(imgPath: String?, placeholder: Placeholder?) {
+    init(imgPath: String?, placeholder: Text? = Text("加载中...")) {
         self._placeholder = placeholder
         self._imageLoader = ImageLoader(loadPath: imgPath)
     }

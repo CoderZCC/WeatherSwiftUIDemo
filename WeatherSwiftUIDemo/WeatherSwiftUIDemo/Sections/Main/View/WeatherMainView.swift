@@ -42,8 +42,8 @@ struct WeatherMainView: View {
                     TipsView(vm: self._vm)
                     
                 }.frame(width: kScreenW, height: nil, alignment: .center).padding(.init(top: 0.0, leading: -16.0, bottom: 0.0, trailing: 0.0))
-            }
-            }.foregroundColor(Color.red).background(WebImage<Text>(imgPath: "https://h5tq.moji.com/tianqi/assets/images/skin/day_1.jpg", placeholder: nil).scaledToFill()).onAppear(perform: self._vm.loadData).edgesIgnoringSafeArea(.all)
+                }
+        }.foregroundColor(Color.red).background(WebImage(imgPath: "https://h5tq.moji.com/tianqi/assets/images/skin/day_1.jpg").scaledToFill()).onAppear(perform: self._vm.loadData).edgesIgnoringSafeArea(.all)
     }
 }
 
@@ -55,7 +55,7 @@ struct WeatherView: View {
     var body: some View {
         HStack {
             Text(self.vm.model?.temperature ?? "33").font(Font.custom("DINCond-Bold", size: 130.0))
-            WebImage<Text>(imgPath: "https://h5tq.moji.com/tianqi/assets/images/weather/w1.png", placeholder: nil).scaledToFit().frame(width: 100.0, height: 100.0, alignment: .center).offset(x: 0.0, y: 12.0)
+            WebImage(imgPath: "https://h5tq.moji.com/tianqi/assets/images/weather/w1.png").scaledToFit().frame(width: 100.0, height: 100.0, alignment: .center).offset(x: 0.0, y: 12.0)
             Text(self.vm.model?.description ?? "晴").font(Font.system(size: 30.0)).fontWeight(.semibold).offset(x: 0.0, y: 30.0)
         }
     }
@@ -71,7 +71,7 @@ struct AqiView: View {
                 Group {
                     Circle().fill(Color.green)
                 }.frame(width: 30.0, height: 30.0, alignment: .center)
-                WebImage<Text>(imgPath: self.vm.model?.aqiIcon, placeholder: nil).frame(width: 16.0, height: 16.0, alignment: .center).scaledToFit()
+                WebImage(imgPath: self.vm.model?.aqiIcon).frame(width: 16.0, height: 16.0, alignment: .center).scaledToFit()
             }
             Text("\(self.vm.model?.aqiNum ?? 0)").foregroundColor(Color.white).fontWeight(.semibold)
             Text(self.vm.model?.aqiDesc ?? "").foregroundColor(Color.white).fontWeight(.semibold)
