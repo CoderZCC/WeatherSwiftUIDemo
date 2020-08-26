@@ -22,7 +22,7 @@ struct WeatherMainView: View {
                 }) {
                     Image(systemName: "plus.circle.fill")
                 }
-            }.frame(width: nil, height: kNavBarHeight)
+            }.frame(height: kNavBarHeight).offset(x: 0.0, y: 10.0)
             
             ScrollView {
                 VStack(alignment: .leading) {
@@ -43,7 +43,7 @@ struct WeatherMainView: View {
                 }
             }
             
-        }.foregroundColor(Color.white).background(WebImage(self._vm.model?.now?.skin, configuration: { $0.resizable() }).scaledToFill().edgesIgnoringSafeArea(.all)).onAppear(perform: self._vm.loadData).offset(x: 16.0, y: 0.0)
+        }.foregroundColor(Color.white).background(WebImage(self._vm.model?.now?.skin, configuration: { $0.resizable() }).scaledToFill().edgesIgnoringSafeArea(.all)).offset(x: 16.0, y: 0.0).edgesIgnoringSafeArea(.all).onAppear(perform: self._vm.loadData)
     }
 }
 
