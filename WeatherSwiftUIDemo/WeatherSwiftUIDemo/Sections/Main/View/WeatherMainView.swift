@@ -42,8 +42,9 @@ struct WeatherMainView: View {
                     TipsView(vm: self._vm)
                     
                 }.frame(width: kScreenW, height: nil, alignment: .center).padding(.init(top: 0.0, leading: -16.0, bottom: 0.0, trailing: 0.0))
-                }
-        }.foregroundColor(Color.white).background(WebImage(imgPath: "https://h5tq.moji.com/tianqi/assets/images/skin/day_1.jpg").scaledToFill()).edgesIgnoringSafeArea(.all).onAppear(perform: self._vm.loadData)
+            }
+            
+        }.foregroundColor(Color.white).background(WebImage(imgPath: self._vm.model?.skin).scaledToFill()).edgesIgnoringSafeArea(.all).onAppear(perform: self._vm.loadData)
     }
 }
 
@@ -54,9 +55,9 @@ struct WeatherView: View {
     
     var body: some View {
         HStack {
-            Text(self.vm.model?.temperature ?? "33").font(Font.custom("DINCond-Bold", size: 130.0))
-            WebImage(imgPath: "https://h5tq.moji.com/tianqi/assets/images/weather/w1.png").scaledToFit().frame(width: 100.0, height: 100.0, alignment: .center).offset(x: 0.0, y: 12.0)
-            Text(self.vm.model?.description ?? "晴").font(Font.system(size: 30.0)).fontWeight(.semibold).offset(x: 0.0, y: 30.0)
+            Text(self.vm.model?.temperature ?? "").font(Font.custom("DINCond-Bold", size: 130.0))
+            WebImage(imgPath: self.vm.model?.thubmImage).scaledToFit().frame(width: 100.0, height: 100.0, alignment: .center).offset(x: 0.0, y: 12.0)
+            Text(self.vm.model?.description ?? "").font(Font.system(size: 30.0)).fontWeight(.semibold).offset(x: 0.0, y: 30.0)
         }
     }
 }
@@ -69,11 +70,21 @@ struct AqiView: View {
         HStack {
             ZStack {
                 Group {
-                    Circle().fill(Color.green)
+                    if self.vm.model?.aqiNum == 0 {
+                        Circle().fill(Color(r: 126, g: 186, b: 25))
+                    } else if self.vm.model?.aqiNum == 1 {
+                        Circle().fill(Color(r: 205, g: 161, b: 15))
+                    } else if self.vm.model?.aqiNum == 2 {
+                        Circle().fill(Color(r: 237, g: 134, b: 10))
+                    } else if self.vm.model?.aqiNum == 3 {
+                        Circle().fill(Color(r: 216, g: 32, b: 21))
+                    } else if self.vm.model?.aqiNum == 4 {
+                        Circle().fill(Color(r: 76, g: 60, b: 134))
+                    }
                 }.frame(width: 30.0, height: 30.0, alignment: .center)
-                WebImage(imgPath: self.vm.model?.aqiIcon).frame(width: 16.0, height: 16.0, alignment: .center).scaledToFit()
+                WebImage(imgPath: self.vm.model?.aqiIcon).frame(width: 14.0, height: 14.0, alignment: .center).scaledToFit()
             }
-            Text("\(self.vm.model?.aqiNum ?? 0)").foregroundColor(Color.white).fontWeight(.semibold)
+            Text("\(self.vm.model?.aqi ?? 0)").foregroundColor(Color.white).fontWeight(.semibold)
             Text(self.vm.model?.aqiDesc ?? "").foregroundColor(Color.white).fontWeight(.semibold)
         }.padding(.init(top: 0.0, leading: 8.0, bottom: 0.0, trailing: 16.0)).frame(width: nil, height: 42.0, alignment: .center).background(Color(r: 52.0, g: 70.0, b: 78.0)).cornerRadius(26.0)
     }
