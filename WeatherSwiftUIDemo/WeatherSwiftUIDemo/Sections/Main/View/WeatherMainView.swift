@@ -15,36 +15,36 @@ struct WeatherMainView: View {
     
     var body: some View {
         VStack {
-                        
-            Spacer(minLength: 30.0)
-            
-            HStack {
-                Text(self._vm.model?.address ?? "").font(Font.system(size: 20.0)).fontWeight(.semibold)
+            HStack(spacing: 10.0) {
+                Text(self._vm.model?.now?.address ?? "").font(Font.system(size: 20.0)).fontWeight(.semibold)
                 Button(action: {
                     print("aaa")
                 }) {
                     Image(systemName: "plus.circle.fill")
                 }
-            }
+            }.frame(width: nil, height: kNavBarHeight)
             
             ScrollView {
-                VStack(alignment: .leading) {
+                VStack {
                     AqiView(vm: self._vm)
                     Spacer(minLength: 10.0)
                     WeatherView(vm: self._vm)
                     
-                    HStack {
-                        Text(self._vm.model?.humidity ?? "").fontWeight(.semibold)
-                        Text(self._vm.model?.wind ?? "").fontWeight(.semibold)
+                    HStack(spacing: 10.0) {
+                        Text(self._vm.model?.now?.humidity ?? "").fontWeight(.semibold)
+                        Text(self._vm.model?.now?.wind ?? "").fontWeight(.semibold)
                     }.font(Font.system(size: 20.0))
                     
                     Spacer(minLength: 20.0)
                     TipsView(vm: self._vm)
                     
-                }.frame(width: kScreenW, height: nil, alignment: .center).padding(.init(top: 0.0, leading: -16.0, bottom: 0.0, trailing: 0.0))
+                    Spacer(minLength: 16.0)
+                    FutureView(vm: self._vm)
+                    
+                }.frame(width: kScreenW, height: nil, alignment: .leading)
             }
             
-        }.foregroundColor(Color.white).background(WebImage(imgPath: self._vm.model?.skin).scaledToFill()).edgesIgnoringSafeArea(.all).onAppear(perform: self._vm.loadData)
+        }.foregroundColor(Color.white).background(WebImage(self._vm.model?.now?.skin, configuration: { $0.resizable() }).scaledToFill().edgesIgnoringSafeArea(.all)).onAppear(perform: self._vm.loadData)
     }
 }
 
@@ -54,10 +54,10 @@ struct WeatherView: View {
     @ObservedObject var vm: WeatherViewModel
     
     var body: some View {
-        HStack {
-            Text(self.vm.model?.temperature ?? "").font(Font.custom("DINCond-Bold", size: 130.0))
-            WebImage(imgPath: self.vm.model?.thubmImage).scaledToFit().frame(width: 100.0, height: 100.0, alignment: .center).offset(x: 0.0, y: 12.0)
-            Text(self.vm.model?.description ?? "").font(Font.system(size: 30.0)).fontWeight(.semibold).offset(x: 0.0, y: 30.0)
+        HStack(spacing: 14.0) {
+            Text(self.vm.model?.now?.temperature ?? "").font(Font.custom("DINCond-Bold", size: 130.0))
+            WebImage(self.vm.model?.now?.thubmImage).scaledToFit().frame(width: 100.0, height: 100.0).offset(x: 0.0, y: 12.0)
+            Text(self.vm.model?.now?.description ?? "").font(Font.system(size: 30.0)).fontWeight(.semibold).offset(x: 0.0, y: 30.0)
         }
     }
 }
@@ -70,23 +70,23 @@ struct AqiView: View {
         HStack {
             ZStack {
                 Group {
-                    if self.vm.model?.aqiNum == 0 {
+                    if self.vm.model?.now?.aqiNum == 0 {
                         Circle().fill(Color(r: 126, g: 186, b: 25))
-                    } else if self.vm.model?.aqiNum == 1 {
+                    } else if self.vm.model?.now?.aqiNum == 1 {
                         Circle().fill(Color(r: 205, g: 161, b: 15))
-                    } else if self.vm.model?.aqiNum == 2 {
+                    } else if self.vm.model?.now?.aqiNum == 2 {
                         Circle().fill(Color(r: 237, g: 134, b: 10))
-                    } else if self.vm.model?.aqiNum == 3 {
+                    } else if self.vm.model?.now?.aqiNum == 3 {
                         Circle().fill(Color(r: 216, g: 32, b: 21))
-                    } else if self.vm.model?.aqiNum == 4 {
+                    } else if self.vm.model?.now?.aqiNum == 4 {
                         Circle().fill(Color(r: 76, g: 60, b: 134))
                     }
-                }.frame(width: 30.0, height: 30.0, alignment: .center)
-                WebImage(imgPath: self.vm.model?.aqiIcon).frame(width: 14.0, height: 14.0, alignment: .center).scaledToFit()
+                }.frame(width: 30.0, height: 30.0)
+                WebImage(self.vm.model?.now?.aqiIcon).frame(width: 14.0, height: 14.0).scaledToFit()
             }
-            Text("\(self.vm.model?.aqi ?? 0)").foregroundColor(Color.white).fontWeight(.semibold)
-            Text(self.vm.model?.aqiDesc ?? "").foregroundColor(Color.white).fontWeight(.semibold)
-        }.padding(.init(top: 0.0, leading: 8.0, bottom: 0.0, trailing: 16.0)).frame(width: nil, height: 42.0, alignment: .center).background(Color(r: 52.0, g: 70.0, b: 78.0)).cornerRadius(26.0)
+            Text("\(self.vm.model?.now?.aqi ?? 0)").foregroundColor(Color.white).fontWeight(.semibold)
+            Text(self.vm.model?.now?.aqiDesc ?? "").foregroundColor(Color.white).fontWeight(.semibold)
+        }.padding(.init(top: 0.0, leading: 8.0, bottom: 0.0, trailing: 16.0)).frame(width: nil, height: 42.0).background(Color(r: 52.0, g: 70.0, b: 78.0)).cornerRadius(26.0)
     }
 }
 
@@ -97,11 +97,64 @@ struct TipsView: View {
     var body: some View {
         HStack {
             ZStack {
-                Text("今日天气提示").fontWeight(.semibold).frame(width: 124.0, height: 30.0, alignment: .center)
+                Text("今日天气提示").fontWeight(.semibold).frame(width: 124.0, height: 30.0)
             }.background(Color(r: 52.0, g: 70.0, b: 78.0)).cornerRadius(15.0)
             
-            Text(self.vm.model?.tips ?? "").fontWeight(.semibold)
-        }.foregroundColor(Color.white).font(Font.system(size: 16.0))
+            Text(self.vm.model?.now?.tips ?? "").fontWeight(.semibold)
+            }.foregroundColor(Color.white).font(Font.system(size: 16.0))
+    }
+}
+
+let testArr: [String] = ["", "", ""]
+
+// MARK: -预告
+struct FutureView: View {
+    @ObservedObject var vm: WeatherViewModel
+    
+    var body: some View {
+        
+        VStack() {
+            Spacer(minLength: 10.0)
+            Text("预告").fontWeight(.semibold).modifier(ContentTextModifier())
+            
+            HStack {
+                Text(self.vm.model?.threeDays?.first?.time ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
+                WebImage(self.vm.model?.threeDays?.first?.thumbImage, configuration: { $0.resizable() }).frame(width: 28.0, height: 28.0).scaledToFit()
+                Text(self.vm.model?.threeDays?.first?.description ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
+                Text(self.vm.model?.threeDays?.first?.tempRange ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
+                Text(self.vm.model?.threeDays?.first?.wind ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
+                Text(self.vm.model?.threeDays?.first?.wind_level ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
+            }
+
+            Group {
+                if (self.vm.model?.threeDays?.count ?? 0) >= 3 {
+                    HStack {
+                        Text(self.vm.model?.threeDays?[1].time ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
+                        WebImage(self.vm.model?.threeDays?[1].thumbImage, configuration: { $0.resizable() }).frame(width: 28.0, height: 28.0).scaledToFit()
+                        Text(self.vm.model?.threeDays?[1].description ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
+                        Text(self.vm.model?.threeDays?[1].tempRange ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
+                        Text(self.vm.model?.threeDays?[1].wind ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
+                        Text(self.vm.model?.threeDays?[1].wind_level ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
+                    }
+                }
+            }
+
+            HStack {
+                Text(self.vm.model?.threeDays?.last?.time ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
+                WebImage(self.vm.model?.threeDays?.last?.thumbImage, configuration: { $0.resizable() }).frame(width: 28.0, height: 28.0).scaledToFit()
+                Text(self.vm.model?.threeDays?.last?.description ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
+                Text(self.vm.model?.threeDays?.last?.tempRange ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
+                Text(self.vm.model?.threeDays?.last?.wind ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
+                Text(self.vm.model?.threeDays?.last?.wind_level ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
+            }
+        }
+    }
+}
+
+// MARK: -文字内容样式
+struct ContentTextModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content.font(Font.system(size: 16.0)).foregroundColor(Color.white)
     }
 }
 

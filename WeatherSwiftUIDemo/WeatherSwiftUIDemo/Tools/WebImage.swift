@@ -14,9 +14,11 @@ struct WebImage: View {
     @ObservedObject var _imageLoader: ImageLoader
     /// 展位
     private var _placeholder: Text?
-    
-    init(imgPath: String?, placeholder: Text? = Text("加载中...")) {
+    private let _configuration: (Image) -> Image
+
+    init(_ imgPath: String?, placeholder: Text? = Text("加载中..."), configuration: @escaping (Image) -> Image = { $0 }) {
         self._placeholder = placeholder
+        self._configuration = configuration
         self._imageLoader = ImageLoader(loadPath: imgPath)
     }
     
@@ -27,7 +29,7 @@ struct WebImage: View {
     private var finalImage: some View {
         Group {
             if self._imageLoader.image != nil {
-                Image(uiImage: self._imageLoader.image!)
+                self._configuration(Image(uiImage: self._imageLoader.image!))
             } else {
                 self._placeholder
             }
@@ -86,6 +88,6 @@ class ImageLoader: ObservableObject {
 
 struct WebImage_Previews: PreviewProvider {
     static var previews: some View {
-        WebImage(imgPath: "https://h5tq.moji.com/tianqi/assets/images/skin/day_1.jpg", placeholder: Text("加载中..."))
+        WebImage( "https://h5tq.moji.com/tianqi/assets/images/skin/day_1.jpg", placeholder: Text("加载中..."))
     }
 }

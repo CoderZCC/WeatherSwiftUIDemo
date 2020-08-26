@@ -9,6 +9,11 @@
 import SwiftUI
 
 struct WeatherModel: Decodable {
+    let now: NowModel?
+    let threeDays: [ThreeDaysModel]?
+}
+
+struct NowModel: Decodable {
     let skin: String?
     let temperature: String?
     let tempRange: String?
@@ -23,4 +28,16 @@ struct WeatherModel: Decodable {
     let aqiNum: Int?
     let updateTime: String?
     let address: String?
+}
+
+struct ThreeDaysModel: Decodable {
+    let time: String?
+    let thumbImage: String?
+    let description: String?
+    let tempRange: String?
+    let wind: String?
+    let wind_level: String?
+    let aqi: Int?
+    let aqiNum: Int?
+    let aqiDesc: String?
 }
