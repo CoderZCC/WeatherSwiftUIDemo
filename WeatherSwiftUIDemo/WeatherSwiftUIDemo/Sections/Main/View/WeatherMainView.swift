@@ -25,9 +25,9 @@ struct WeatherMainView: View {
             }.frame(width: nil, height: kNavBarHeight)
             
             ScrollView {
-                VStack {
+                VStack(alignment: .leading) {
                     AqiView(vm: self._vm)
-                    Spacer(minLength: 10.0)
+                    Spacer(minLength: 10.0).frame(width: kScreenW)
                     WeatherView(vm: self._vm)
                     
                     HStack(spacing: 10.0) {
@@ -40,11 +40,10 @@ struct WeatherMainView: View {
                     
                     Spacer(minLength: 16.0)
                     FutureView(vm: self._vm)
-                    
-                }.frame(width: kScreenW, height: nil, alignment: .leading)
+                }
             }
             
-        }.foregroundColor(Color.white).background(WebImage(self._vm.model?.now?.skin, configuration: { $0.resizable() }).scaledToFill().edgesIgnoringSafeArea(.all)).onAppear(perform: self._vm.loadData)
+        }.foregroundColor(Color.white).background(WebImage(self._vm.model?.now?.skin, configuration: { $0.resizable() }).scaledToFill().edgesIgnoringSafeArea(.all)).onAppear(perform: self._vm.loadData).offset(x: 16.0, y: 0.0)
     }
 }
 
@@ -86,7 +85,7 @@ struct AqiView: View {
             }
             Text("\(self.vm.model?.now?.aqi ?? 0)").foregroundColor(Color.white).fontWeight(.semibold)
             Text(self.vm.model?.now?.aqiDesc ?? "").foregroundColor(Color.white).fontWeight(.semibold)
-        }.padding(.init(top: 0.0, leading: 8.0, bottom: 0.0, trailing: 16.0)).frame(width: nil, height: 42.0).background(Color(r: 52.0, g: 70.0, b: 78.0)).cornerRadius(26.0)
+        }.padding(.init(top: 0.0, leading: 8.0, bottom: 0.0, trailing: 16.0)).frame(width: nil, height: 42.0).background(Color.black.opacity(0.3)).cornerRadius(26.0)
     }
 }
 
@@ -98,24 +97,22 @@ struct TipsView: View {
         HStack {
             ZStack {
                 Text("今日天气提示").fontWeight(.semibold).frame(width: 124.0, height: 30.0)
-            }.background(Color(r: 52.0, g: 70.0, b: 78.0)).cornerRadius(15.0)
+            }.background(Color.black.opacity(0.3)).cornerRadius(15.0)
             
             Text(self.vm.model?.now?.tips ?? "").fontWeight(.semibold)
             }.foregroundColor(Color.white).font(Font.system(size: 16.0))
     }
 }
 
-let testArr: [String] = ["", "", ""]
-
 // MARK: -预告
 struct FutureView: View {
     @ObservedObject var vm: WeatherViewModel
     
     var body: some View {
-        
-        VStack() {
-            Spacer(minLength: 10.0)
-            Text("预告").fontWeight(.semibold).modifier(ContentTextModifier())
+        VStack(alignment: .leading) {
+            Spacer(minLength: 10.0).frame(width: kScreenW - 32.0)
+            Text("预告").fontWeight(.semibold).modifier(ContentTextModifier()).padding(.init(top: 0.0, leading: 14.0, bottom: 0.0, trailing: 14.0))
+            Divider().background(Color.black)
             
             HStack {
                 Text(self.vm.model?.threeDays?.first?.time ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
@@ -124,8 +121,8 @@ struct FutureView: View {
                 Text(self.vm.model?.threeDays?.first?.tempRange ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
                 Text(self.vm.model?.threeDays?.first?.wind ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
                 Text(self.vm.model?.threeDays?.first?.wind_level ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
-            }
-
+            }.padding(.init(top: 0.0, leading: 14.0, bottom: 0.0, trailing: 14.0))
+            
             Group {
                 if (self.vm.model?.threeDays?.count ?? 0) >= 3 {
                     HStack {
@@ -137,7 +134,7 @@ struct FutureView: View {
                         Text(self.vm.model?.threeDays?[1].wind_level ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
                     }
                 }
-            }
+            }.padding(.init(top: 0.0, leading: 14.0, bottom: 0.0, trailing: 14.0))
 
             HStack {
                 Text(self.vm.model?.threeDays?.last?.time ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
@@ -146,8 +143,10 @@ struct FutureView: View {
                 Text(self.vm.model?.threeDays?.last?.tempRange ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
                 Text(self.vm.model?.threeDays?.last?.wind ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
                 Text(self.vm.model?.threeDays?.last?.wind_level ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
-            }
-        }
+            }.padding(.init(top: 0.0, leading: 14.0, bottom: 0.0, trailing: 14.0))
+            
+            Spacer(minLength: 10.0)
+        }.background(Color.black.opacity(0.3)).cornerRadius(8.0)
     }
 }
 
