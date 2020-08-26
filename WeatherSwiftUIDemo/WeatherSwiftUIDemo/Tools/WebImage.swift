@@ -21,7 +21,7 @@ struct WebImage: View {
     }
     
     var body: some View {
-        finalImage.onAppear(perform: self.load).onDisappear(perform: self.cancel)
+        finalImage.onDisappear(perform: self.cancel)
     }
     
     private var finalImage: some View {
@@ -53,6 +53,7 @@ class ImageLoader: ObservableObject {
     
     init(loadPath: String?) {
         self.loadPath = loadPath
+        self.load()
     }
     
     func load() {
@@ -75,6 +76,7 @@ class ImageLoader: ObservableObject {
     func cancel() {
         self._isLoading = false
         self._task?.cancel()
+        self._task = nil
     }
     
     deinit {

@@ -43,7 +43,7 @@ struct WeatherMainView: View {
                     
                 }.frame(width: kScreenW, height: nil, alignment: .center).padding(.init(top: 0.0, leading: -16.0, bottom: 0.0, trailing: 0.0))
                 }
-        }.foregroundColor(Color.red).background(WebImage(imgPath: "https://h5tq.moji.com/tianqi/assets/images/skin/day_1.jpg").scaledToFill()).onAppear(perform: self._vm.loadData).edgesIgnoringSafeArea(.all)
+        }.foregroundColor(Color.white).background(WebImage(imgPath: "https://h5tq.moji.com/tianqi/assets/images/skin/day_1.jpg").scaledToFill()).edgesIgnoringSafeArea(.all).onAppear(perform: self._vm.loadData)
     }
 }
 
@@ -90,7 +90,7 @@ struct TipsView: View {
             }.background(Color(r: 52.0, g: 70.0, b: 78.0)).cornerRadius(15.0)
             
             Text(self.vm.model?.tips ?? "").fontWeight(.semibold)
-        }.foregroundColor(Color.red).font(Font.system(size: 16.0))
+        }.foregroundColor(Color.white).font(Font.system(size: 16.0))
     }
 }
 
