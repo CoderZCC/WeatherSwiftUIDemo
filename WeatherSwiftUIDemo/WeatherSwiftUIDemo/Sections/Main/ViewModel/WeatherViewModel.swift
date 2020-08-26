@@ -16,8 +16,10 @@ class WeatherViewModel: ObservableObject {
     func loadData() {
         
         APIManager.start(.weatherThreeDays, modelT: WeatherModel.self) { [weak self] (model) in
-            DispatchQueue.main.async {
-                self?.model = model
+            if model != self?.model {
+                DispatchQueue.main.async {
+                    self?.model = model
+                }
             }
         }
     }

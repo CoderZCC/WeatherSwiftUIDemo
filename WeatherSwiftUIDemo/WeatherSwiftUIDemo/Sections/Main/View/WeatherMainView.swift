@@ -12,6 +12,7 @@ struct WeatherMainView: View {
     
     /// @State只标注值类型,class是引用类型
     @ObservedObject private var _vm = WeatherViewModel()
+    @State var _isLoading: Bool = false
     
     var body: some View {
         VStack {
@@ -43,10 +44,24 @@ struct WeatherMainView: View {
                 }
             }
             
-        }.foregroundColor(Color.white).background(WebImage(self._vm.model?.now?.skin, configuration: { $0.resizable() }).scaledToFill().edgesIgnoringSafeArea(.all)).edgesIgnoringSafeArea(.all).onAppear(perform: self._vm.loadData)
+//            Button(action: {
+//                self._isLoading.toggle()
+//                if self._isLoading {
+//                    self._vm.loadData()
+//                }
+//            }) {
+//                Text(self._isLoading ? "加载" : "刷新")
+//            }.frame(width: 60.0, height: 60.0, alignment: .center).background(Color.black.opacity(0.6)).cornerRadius(30.0)
+            
+        }.foregroundColor(Color.white).background(WebImage(self._vm.model?.now?.skin, configuration: { $0.resizable() }).scaledToFill().edgesIgnoringSafeArea(.all)).edgesIgnoringSafeArea(.all).statusBar(hidden: false).onAppear {
+            
+            self._vm.loadData()
+            NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification, object: nil, queue: OperationQueue.current) { (_) in
+                self._vm.loadData()
+            }
+        }
     }
 }
-
 
 // MARK: -天气信息
 struct WeatherView: View {
