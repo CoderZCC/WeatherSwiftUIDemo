@@ -123,17 +123,13 @@ struct FutureView: View {
     @ObservedObject var vm: WeatherViewModel
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Spacer(minLength: 10.0)
-            Text("预告").fontWeight(.semibold).modifier(ContentTextModifier()).padding(.leading, 14.0)
-            ScrollView {
-                Divider().background(Color.black).frame(width: kScreenW - 32.0)
-                VStack {
-                    ForEach(self.vm.model?.threeDays ?? []) {model in
-                        FutureContentView(model: model)
-                    }
+        VStack {
+            Text("预告").fontWeight(.semibold).modifier(ContentTextModifier()).padding(.top, 10.0)
+            VStack {
+                ForEach(self.vm.model?.threeDays ?? []) {model in
+                    FutureContentView(model: model)
                 }
-            }.frame(height: 130.0)
+            }.padding(.init(top: 0.0, leading: 20.0, bottom: 10.0, trailing: 20.0))
         }.background(Color.black.opacity(0.3)).cornerRadius(8.0)
     }
 }
