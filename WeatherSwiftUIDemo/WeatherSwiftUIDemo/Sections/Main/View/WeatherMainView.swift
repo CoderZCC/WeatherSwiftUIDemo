@@ -24,12 +24,12 @@ struct WeatherMainView: View {
                 }) {
                     Image(systemName: "plus.circle.fill")
                 }
-            }.frame(height: kNavBarHeight).offset(y: 10.0)
+            }.frame(height: kNavBarHeight).offset(y: kTopSafeH)
             
             ScrollView {
                 VStack(alignment: .leading) {
                     AqiView(vm: self._vm)
-                    Spacer(minLength: 10.0).frame(width: kScreenW - 32.0)
+                    Spacer(minLength: 10.0).frame(width: kScreenW - kHorizontalSapce * 2.0)
                     WeatherView(vm: self._vm)
                     
                     HStack(spacing: 20.0) {
@@ -120,13 +120,13 @@ struct FutureView: View {
     @ObservedObject var vm: WeatherViewModel
     
     var body: some View {
-        VStack {
-            Text("预告").fontWeight(.semibold).modifier(ContentTextModifier()).padding(.top, 10.0)
+        VStack(alignment: .leading) {
+            Text("预告").fontWeight(.semibold).modifier(ContentTextModifier()).padding(.top, 10.0).padding(.leading, kHorizontalSapce)
             VStack {
                 ForEach(self.vm.model?.threeDays ?? []) {model in
                     FutureContentView(model: model)
                 }
-            }.padding(.init(top: 0.0, leading: 20.0, bottom: 10.0, trailing: 20.0))
+            }.padding(.init(top: 0.0, leading: kHorizontalSapce, bottom: 10.0, trailing: kHorizontalSapce))
         }.background(Color.black.opacity(0.3)).cornerRadius(8.0)
     }
 }
@@ -135,14 +135,14 @@ struct FutureView: View {
 struct FutureContentView: View {
     var model: ThreeDaysModel
     var body: some View {
-        HStack(spacing: 20.0) {
+        HStack(spacing: 16.0) {
             Text(model.time ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
-            WebImage(model.thumbImage, configuration: { $0.resizable() }).frame(width: 30.0, height: 30.0).scaledToFit()
+            WebImage(model.thumbImage, configuration: { $0.resizable() }).frame(width: 28.0, height: 28.0).scaledToFit()
             Text(model.description ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
             Text(model.tempRange ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
             Text(model.wind ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
             Text(model.wind_level ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
-        }
+        }.frame(maxWidth: kScreenW - kHorizontalSapce * 4.0, minHeight: 30.0, alignment: .leading)
     }
 }
 
@@ -151,12 +151,11 @@ struct CalendarView: View {
     @ObservedObject var vm: WeatherViewModel
     
     var body: some View {
-        VStack {
-            
-            Text("天气日历-12月").fontWeight(.semibold).padding(.top, 10.0)
+        VStack(alignment: .leading) {
+            Text("天气日历").fontWeight(.semibold).padding(.top, 10.0).padding(.leading, kHorizontalSapce)
             HStack(spacing: 0.0) {
-                ForEach(kMonthDays.indices) { i in
-                    Text("星期\(kMonthDays[i])").font(Font.system(size: 14.0)).fontWeight(.semibold).frame(width: (kScreenW - 32.0) / 7.0, height: 40.0, alignment: .center)
+                ForEach(kWeekDays.indices) { i in
+                    Text("星期\(kWeekDays[i])").font(Font.system(size: 14.0)).fontWeight(.semibold).frame(width: (kScreenW - kHorizontalSapce * 2.0) / CGFloat(kWeekDays.count), height: 40.0, alignment: .center)
                 }
             }
             ForEach((self.vm.model?.dealArr ?? []).indices, id: \.self) { i in
@@ -182,7 +181,7 @@ struct MonthContentView: View {
             }.frame(width: 30.0, height: 30.0, alignment: .center)
             Text(self.model?.tempRange ?? "").font(Font.system(size: 14.0)).fontWeight(.semibold)
             Text(self.model?.wind ?? "").font(Font.system(size: 14.0)).fontWeight(.semibold)
-        }.frame(width: (kScreenW - 32.0) / 7.0, height: 150.0).border(Color.white.opacity(0.2), width: 0.5)
+        }.frame(width: (kScreenW - kHorizontalSapce * 2.0) / CGFloat(kWeekDays.count), height: 150.0).border(Color.white.opacity(0.2), width: 0.5)
     }
 }
 

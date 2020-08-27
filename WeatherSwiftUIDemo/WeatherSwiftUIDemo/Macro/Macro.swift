@@ -12,10 +12,14 @@ var kWindow: UIWindow?
 let kBasePath: String = "http://www.ccserver.top"
 let kScreenW = UIScreen.main.bounds.width
 let kScreenH = UIScreen.main.bounds.height
-let kNavBarHeight: CGFloat = 44.0 + (kWindow?.safeAreaInsets.top ?? 20.0)
-
-let kTopSafeH: CGFloat = 20.0
+let kTopSafeH: CGFloat = kWindow?.safeAreaInsets.top ?? 20.0
+let kIphoneX: Bool = kTopSafeH > 20.0
+let kNavBarHeight: CGFloat = 44.0 + kTopSafeH
 
 let kImageFilePath = NSHomeDirectory() + "/Documents/images"
 
-let kMonthDays = ["天", "一", "二", "三", "四", "五", "六"]
+let kWeekDays = ["天", "一", "二", "三", "四", "五", "六"]
+
+/// 水平方向间隔
+let kHorizontalSapce: CGFloat = 16.0
+
