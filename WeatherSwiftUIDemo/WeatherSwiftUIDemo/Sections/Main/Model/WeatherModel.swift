@@ -16,6 +16,7 @@ struct WeatherModel: Decodable, Equatable {
     
     let now: NowModel?
     let threeDays: [ThreeDaysModel]?
+    let monthWeather: [MonthWeatherModel]?
 }
 
 struct NowModel: Decodable {
@@ -35,7 +36,9 @@ struct NowModel: Decodable {
     let address: String?
 }
 
-struct ThreeDaysModel: Decodable {
+struct ThreeDaysModel: Decodable, Identifiable, Hashable {
+    var id = UUID()
+    
     let time: String?
     let thumbImage: String?
     let description: String?
@@ -45,4 +48,27 @@ struct ThreeDaysModel: Decodable {
     let aqi: Int?
     let aqiNum: Int?
     let aqiDesc: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case time, thumbImage, description, tempRange, wind, wind_level, aqi, aqiNum, aqiDesc
+    }
+}
+
+struct MonthWeatherModel: Decodable, Identifiable {
+    var id = UUID()
+    
+    let day: String?
+    let img: String?
+    let imgDesc: String?
+    let tempRange: String?
+    let wind: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case day, img, imgDesc, tempRange, wind
+    }
+}
+
+struct TestModel: Identifiable, Hashable {
+    var id = UUID()
+    var name: String
 }

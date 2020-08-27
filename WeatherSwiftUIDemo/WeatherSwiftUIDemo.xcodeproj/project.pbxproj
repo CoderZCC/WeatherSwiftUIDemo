@@ -39,6 +39,7 @@
 		519872C724F4D31300ADC3F7 /* APIEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnum.swift; sourceTree = "<group>"; };
 		519872CA24F4DB9400ADC3F7 /* WebImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImage.swift; sourceTree = "<group>"; };
 		519872CE24F4E3D200ADC3F7 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
+		51C8885824F7572000021D5E /* weather.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = weather.entitlements; sourceTree = "<group>"; };
 		51E4699424F5F05F009A3D85 /* Color-ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color-ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -72,6 +73,7 @@
 		519872A624F4BD5D00ADC3F7 /* WeatherSwiftUIDemo */ = {
 			isa = PBXGroup;
 			children = (
+				51C8885824F7572000021D5E /* weather.entitlements */,
 				519872A924F4BD5D00ADC3F7 /* SceneDelegate.swift */,
 				519872C424F4C36900ADC3F7 /* Macro */,
 				51E4699324F5F04C009A3D85 /* Category */,
@@ -396,6 +398,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = WeatherSwiftUIDemo/weather.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"WeatherSwiftUIDemo/Preview Content\"";
@@ -410,6 +413,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.zcc.WeatherSwiftUIDemo;
 				PRODUCT_NAME = weather;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -419,6 +423,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = WeatherSwiftUIDemo/weather.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"WeatherSwiftUIDemo/Preview Content\"";
@@ -433,6 +438,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.zcc.WeatherSwiftUIDemo;
 				PRODUCT_NAME = weather;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

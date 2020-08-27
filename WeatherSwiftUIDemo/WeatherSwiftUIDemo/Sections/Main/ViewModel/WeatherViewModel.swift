@@ -18,8 +18,10 @@ class WeatherViewModel: ObservableObject {
         let d = try! Data(contentsOf: URL(fileURLWithPath: filePath))
         let model = try? JSONDecoder().decode(BaseModel<WeatherModel>.self, from: d)
         self.model = model?.data
+        
 //        APIManager.start(.weatherThreeDays, modelT: WeatherModel.self) { [weak self] (model) in
 //            if model != self?.model {
+//                print(model)
 //                DispatchQueue.main.async {
 //                    self?.model = model
 //                }

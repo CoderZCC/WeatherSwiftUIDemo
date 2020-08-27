@@ -42,10 +42,13 @@ struct WeatherMainView: View {
                     
                     Spacer(minLength: 16.0)
                     FutureView(vm: self._vm)
+                    
+                    Spacer(minLength: 16.0)
+                    CalendarView(vm: self._vm)
                 }
             }
             
-        }.foregroundColor(Color.black).background(WebImage(self._vm.model?.now?.skin, configuration: { $0.resizable() }).scaledToFill()).edgesIgnoringSafeArea(.all).statusBar(hidden: false).onAppear {
+        }.foregroundColor(Color.white).background(WebImage(self._vm.model?.now?.skin, configuration: { $0.resizable() }).scaledToFill()).edgesIgnoringSafeArea(.all).statusBar(hidden: false).onAppear {
             
             self._vm.loadData()
             NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification, object: nil, queue: OperationQueue.current) { (_) in
@@ -113,49 +116,55 @@ struct TipsView: View {
     }
 }
 
-// MARK: -预告
+let testModel = [TestModel(name: "zcc"), TestModel(name: "ws")]
+
+// MARK: -未来三天
 struct FutureView: View {
     @ObservedObject var vm: WeatherViewModel
     
     var body: some View {
         VStack(alignment: .leading) {
             Spacer(minLength: 10.0)
-            Text("预告").fontWeight(.semibold).modifier(ContentTextModifier()).padding(.init(top: 0.0, leading: 14.0, bottom: 0.0, trailing: 14.0))
-            Divider().background(Color.black).frame(width: kScreenW - 32.0)
-            
-            HStack(spacing: 12.0) {
-                Text(self.vm.model?.threeDays?.first?.time ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
-                WebImage(self.vm.model?.threeDays?.first?.thumbImage, configuration: { $0.resizable() }).frame(width: 28.0, height: 28.0).scaledToFit()
-                Text(self.vm.model?.threeDays?.first?.description ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
-                Text(self.vm.model?.threeDays?.first?.tempRange ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
-                Text(self.vm.model?.threeDays?.first?.wind ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
-                Text(self.vm.model?.threeDays?.first?.wind_level ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
-            }.padding(.init(top: 5.0, leading: 14.0, bottom: 0.0, trailing: 14.0))
-            
-            Group {
-                if (self.vm.model?.threeDays?.count ?? 0) >= 3 {
-                    HStack(spacing: 12.0) {
-                        Text(self.vm.model?.threeDays?[1].time ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
-                        WebImage(self.vm.model?.threeDays?[1].thumbImage, configuration: { $0.resizable() }).frame(width: 28.0, height: 28.0).scaledToFit()
-                        Text(self.vm.model?.threeDays?[1].description ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
-                        Text(self.vm.model?.threeDays?[1].tempRange ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
-                        Text(self.vm.model?.threeDays?[1].wind ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
-                        Text(self.vm.model?.threeDays?[1].wind_level ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
+            Text("预告").fontWeight(.semibold).modifier(ContentTextModifier()).padding(.leading, 14.0)
+            ScrollView {
+                Divider().background(Color.black).frame(width: kScreenW - 32.0)
+                VStack {
+                    ForEach(self.vm.model?.threeDays ?? []) {model in
+                        FutureContentView(model: model)
                     }
                 }
-            }.padding(.init(top: 5.0, leading: 14.0, bottom: 0.0, trailing: 14.0))
-            
-            HStack(spacing: 12.0) {
-                Text(self.vm.model?.threeDays?.last?.time ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
-                WebImage(self.vm.model?.threeDays?.last?.thumbImage, configuration: { $0.resizable() }).frame(width: 28.0, height: 28.0).scaledToFit()
-                Text(self.vm.model?.threeDays?.last?.description ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
-                Text(self.vm.model?.threeDays?.last?.tempRange ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
-                Text(self.vm.model?.threeDays?.last?.wind ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
-                Text(self.vm.model?.threeDays?.last?.wind_level ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
-            }.padding(.init(top: 5.0, leading: 14.0, bottom: 0.0, trailing: 14.0))
-            
-            Spacer(minLength: 10.0)
+            }.frame(height: 130.0)
         }.background(Color.black.opacity(0.3)).cornerRadius(8.0)
+    }
+}
+
+// MARK: -未来三天内容
+struct FutureContentView: View {
+    var model: ThreeDaysModel
+    var body: some View {
+        HStack(spacing: 12.0) {
+            Text(model.time ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
+            WebImage(model.thumbImage, configuration: { $0.resizable() }).frame(width: 28.0, height: 28.0).scaledToFit()
+            Text(model.description ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
+            Text(model.tempRange ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
+            Text(model.wind ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
+            Text(model.wind_level ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
+        }
+    }
+}
+
+// MARK: -天气日历
+struct CalendarView: View {
+    @ObservedObject var vm: WeatherViewModel
+    
+    var body: some View {
+        
+        VStack {
+            Text("天气日历")
+        }
+        
+
+        
     }
 }
 
