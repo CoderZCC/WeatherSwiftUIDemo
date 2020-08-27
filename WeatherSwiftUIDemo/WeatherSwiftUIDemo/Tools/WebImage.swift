@@ -15,7 +15,7 @@ struct WebImage: View {
     /// 展位
     private var _placeholder: Text?
     private let _configuration: (Image) -> Image
-
+    
     init(_ imgPath: String?, placeholder: Text? = Text("加载中..."), configuration: @escaping (Image) -> Image = { $0 }) {
         self._placeholder = placeholder
         self._configuration = configuration
@@ -62,8 +62,21 @@ class ImageLoader: ObservableObject {
         if self._isLoading { return }
         guard let path = self.loadPath, let url = URL(string: path) else { return }
         self._isLoading = true
+        let filePath = kImageFilePath + (path.components(separatedBy: "/").last ?? "1.png")
+        let file = FileManager.default
+        if file.isReadableFile(atPath: filePath) {
+            if let img = UIImage(contentsOfFile: filePath) {
+                self._isLoading = false
+                DispatchQueue.main.async {
+                    self.image = img
+                }
+                return
+            }
+        }
         self._task = URLSession.shared.dataTask(with: url) { (data, _, error) in
             if let d = data, let img = UIImage(data: d) {
+                // 缓存到本地
+                NSData(data: d).write(toFile: filePath, atomically: true)
                 DispatchQueue.main.async {
                     self.image = img
                 }

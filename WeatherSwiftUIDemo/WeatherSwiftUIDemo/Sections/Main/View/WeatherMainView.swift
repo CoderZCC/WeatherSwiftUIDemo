@@ -20,10 +20,11 @@ struct WeatherMainView: View {
                 Text(self._vm.model?.now?.address ?? "").font(Font.system(size: 20.0)).fontWeight(.semibold)
                 Button(action: {
                     print("aaa")
+                    
                 }) {
                     Image(systemName: "plus.circle.fill")
                 }
-            }.frame(height: kNavBarHeight).offset(x: 0.0, y: 10.0)
+            }.frame(height: kNavBarHeight).offset(y: 10.0)
             
             ScrollView {
                 VStack(alignment: .leading) {
@@ -44,16 +45,7 @@ struct WeatherMainView: View {
                 }
             }
             
-//            Button(action: {
-//                self._isLoading.toggle()
-//                if self._isLoading {
-//                    self._vm.loadData()
-//                }
-//            }) {
-//                Text(self._isLoading ? "加载" : "刷新")
-//            }.frame(width: 60.0, height: 60.0, alignment: .center).background(Color.black.opacity(0.6)).cornerRadius(30.0)
-            
-        }.foregroundColor(Color.white).background(WebImage(self._vm.model?.now?.skin, configuration: { $0.resizable() }).scaledToFill().edgesIgnoringSafeArea(.all)).edgesIgnoringSafeArea(.all).statusBar(hidden: false).onAppear {
+        }.foregroundColor(Color.black).background(WebImage(self._vm.model?.now?.skin, configuration: { $0.resizable() }).scaledToFill().edgesIgnoringSafeArea(.all)).edgesIgnoringSafeArea(.all).statusBar(hidden: false).onAppear {
             
             self._vm.loadData()
             NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification, object: nil, queue: OperationQueue.current) { (_) in
@@ -96,10 +88,12 @@ struct AqiView: View {
                         Circle().fill(Color(r: 76, g: 60, b: 134))
                     }
                 }.frame(width: 30.0, height: 30.0)
-                WebImage(self.vm.model?.now?.aqiIcon).frame(width: 14.0, height: 14.0).scaledToFit()
+                WebImage(self.vm.model?.now?.aqiIcon) { (img) -> Image in
+                    return img.resizable()
+                }.frame(width: 15.0, height: 15.0)
             }
-            Text("\(self.vm.model?.now?.aqi ?? 0)").foregroundColor(Color.white).fontWeight(.semibold)
-            Text(self.vm.model?.now?.aqiDesc ?? "").foregroundColor(Color.white).fontWeight(.semibold)
+            Text("\(self.vm.model?.now?.aqi ?? 0)").fontWeight(.semibold)
+            Text(self.vm.model?.now?.aqiDesc ?? "").fontWeight(.semibold)
         }.padding(.init(top: 0.0, leading: 8.0, bottom: 0.0, trailing: 16.0)).frame(height: 42.0).background(Color.black.opacity(0.3)).cornerRadius(26.0)
     }
 }
@@ -115,7 +109,7 @@ struct TipsView: View {
             }.background(Color.black.opacity(0.3)).cornerRadius(15.0)
             
             Text(self.vm.model?.now?.tips ?? "").fontWeight(.semibold)
-            }.foregroundColor(Color.white).font(Font.system(size: 16.0))
+            }.font(Font.system(size: 16.0))
     }
 }
 
@@ -168,7 +162,7 @@ struct FutureView: View {
 // MARK: -文字内容样式
 struct ContentTextModifier: ViewModifier {
     func body(content: Content) -> some View {
-        content.font(Font.system(size: 16.0)).foregroundColor(Color.white)
+        content.font(Font.system(size: 16.0))
     }
 }
 
