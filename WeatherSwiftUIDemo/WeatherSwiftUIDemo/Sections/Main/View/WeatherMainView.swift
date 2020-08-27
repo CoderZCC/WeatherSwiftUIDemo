@@ -45,7 +45,7 @@ struct WeatherMainView: View {
                 }
             }
             
-        }.foregroundColor(Color.black).background(WebImage(self._vm.model?.now?.skin, configuration: { $0.resizable() }).scaledToFill().edgesIgnoringSafeArea(.all)).edgesIgnoringSafeArea(.all).statusBar(hidden: false).onAppear {
+        }.foregroundColor(Color.black).background(WebImage(self._vm.model?.now?.skin, configuration: { $0.resizable() }).scaledToFill()).edgesIgnoringSafeArea(.all).statusBar(hidden: false).onAppear {
             
             self._vm.loadData()
             NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification, object: nil, queue: OperationQueue.current) { (_) in
@@ -94,7 +94,7 @@ struct AqiView: View {
             }
             Text("\(self.vm.model?.now?.aqi ?? 0)").fontWeight(.semibold)
             Text(self.vm.model?.now?.aqiDesc ?? "").fontWeight(.semibold)
-        }.padding(.init(top: 0.0, leading: 8.0, bottom: 0.0, trailing: 16.0)).frame(height: 42.0).background(Color.black.opacity(0.3)).cornerRadius(26.0)
+        }.padding(.init(top: 0.0, leading: 8.0, bottom: 0.0, trailing: 16.0)).frame(height: 42.0).background(Color.black.opacity(0.3)).cornerRadius(21.0)
     }
 }
 
