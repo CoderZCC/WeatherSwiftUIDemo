@@ -32,7 +32,7 @@ struct WeatherMainView: View {
                     Spacer(minLength: 10.0).frame(width: kScreenW - 32.0)
                     WeatherView(vm: self._vm)
                     
-                    HStack(spacing: 10.0) {
+                    HStack(spacing: 20.0) {
                         Text(self._vm.model?.now?.humidity ?? "").fontWeight(.semibold)
                         Text(self._vm.model?.now?.wind ?? "").fontWeight(.semibold)
                     }.font(Font.system(size: 20.0))
@@ -63,7 +63,7 @@ struct WeatherView: View {
     @ObservedObject var vm: WeatherViewModel
     
     var body: some View {
-        HStack(spacing: 14.0) {
+        HStack(spacing: 16.0) {
             Text(self.vm.model?.now?.temperature ?? "").font(Font.custom("DINCond-Bold", size: 130.0))
             WebImage(self.vm.model?.now?.thubmImage).scaledToFit().frame(width: 100.0, height: 100.0).offset(x: 0.0, y: 12.0)
             Text(self.vm.model?.now?.description ?? "").font(Font.system(size: 30.0)).fontWeight(.semibold).offset(x: 0.0, y: 30.0)
@@ -76,7 +76,7 @@ struct AqiView: View {
     @ObservedObject var vm: WeatherViewModel
     
     var body: some View {
-        HStack {
+        HStack(spacing: 10.0) {
             ZStack {
                 Group {
                     if self.vm.model?.now?.aqiNum == 0 {
@@ -95,8 +95,7 @@ struct AqiView: View {
                     return img.resizable()
                 }.frame(width: 15.0, height: 15.0)
             }
-            Text("\(self.vm.model?.now?.aqi ?? 0)").fontWeight(.semibold)
-            Text(self.vm.model?.now?.aqiDesc ?? "").fontWeight(.semibold)
+            Text("\(self.vm.model?.now?.aqi ?? 0)" + " " + (self.vm.model?.now?.aqiDesc ?? "")).fontWeight(.semibold)
         }.padding(.init(top: 0.0, leading: 8.0, bottom: 0.0, trailing: 16.0)).frame(height: 42.0).background(Color.black.opacity(0.3)).cornerRadius(21.0)
     }
 }
@@ -106,7 +105,7 @@ struct TipsView: View {
     @ObservedObject var vm: WeatherViewModel
     
     var body: some View {
-        HStack {
+        HStack(spacing: 18.0) {
             ZStack {
                 Text("今日天气提示").fontWeight(.semibold).frame(width: 124.0, height: 30.0)
             }.background(Color.black.opacity(0.3)).cornerRadius(15.0)
@@ -136,9 +135,9 @@ struct FutureView: View {
 struct FutureContentView: View {
     var model: ThreeDaysModel
     var body: some View {
-        HStack(spacing: 12.0) {
+        HStack(spacing: 20.0) {
             Text(model.time ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
-            WebImage(model.thumbImage, configuration: { $0.resizable() }).frame(width: 28.0, height: 28.0).scaledToFit()
+            WebImage(model.thumbImage, configuration: { $0.resizable() }).frame(width: 30.0, height: 30.0).scaledToFit()
             Text(model.description ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
             Text(model.tempRange ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
             Text(model.wind ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
@@ -153,14 +152,15 @@ struct CalendarView: View {
     
     var body: some View {
         VStack {
-            Text("天气日历").fontWeight(.semibold).padding(.top, 10.0)
-            HStack {
+            
+            Text("天气日历-12月").fontWeight(.semibold).padding(.top, 10.0)
+            HStack(spacing: 0.0) {
                 ForEach(kMonthDays.indices) { i in
-                    Text("星期\(kMonthDays[i])").font(Font.system(size: 14.0)).fontWeight(.semibold).frame(width: (kScreenW - 64.0) / 7.0, height: 40.0, alignment: .center)
+                    Text("星期\(kMonthDays[i])").font(Font.system(size: 14.0)).fontWeight(.semibold).frame(width: (kScreenW - 32.0) / 7.0, height: 40.0, alignment: .center)
                 }
             }
             ForEach((self.vm.model?.dealArr ?? []).indices, id: \.self) { i in
-                HStack {
+                HStack(spacing: 0.0) {
                     ForEach((self.vm.model?.dealArr ?? [])[i].indices, id: \.self) { j in
                         MonthContentView(model: self.vm.model?.dealArr[i][j])
                     }
@@ -176,13 +176,13 @@ struct MonthContentView: View {
     
     var body: some View {
         VStack {
-            Text(self.model?.day ?? "").font(Font.system(size: 12.0)).fontWeight(.semibold)
+            Text(self.model?.day ?? "").font(Font.system(size: 16.0)).fontWeight(.semibold)
             WebImage(self.model?.img, placeholder: Text(self.model?.imgDesc ?? "加载中...")) { (img) -> Image in
                 return img.resizable()
             }.frame(width: 30.0, height: 30.0, alignment: .center)
-            Text(self.model?.tempRange ?? "").font(Font.system(size: 12.0)).fontWeight(.semibold)
-            Text(self.model?.wind ?? "").font(Font.system(size: 12.0)).fontWeight(.semibold)
-        }.frame(width: (kScreenW - 64.0) / 7.0, height: 140.0).border(Color.clear, width: 1.0)
+            Text(self.model?.tempRange ?? "").font(Font.system(size: 14.0)).fontWeight(.semibold)
+            Text(self.model?.wind ?? "").font(Font.system(size: 14.0)).fontWeight(.semibold)
+        }.frame(width: (kScreenW - 32.0) / 7.0, height: 150.0).border(Color.white.opacity(0.2), width: 0.5)
     }
 }
 

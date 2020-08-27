@@ -80,6 +80,10 @@ struct MonthWeatherModel: Decodable, Identifiable, Hashable {
     let tempRange: String?
     let wind: String?
     
+    var isToday: Bool {
+        return false
+    }
+    
     enum CodingKeys: String, CodingKey {
         case day, img, imgDesc, tempRange, wind
     }
