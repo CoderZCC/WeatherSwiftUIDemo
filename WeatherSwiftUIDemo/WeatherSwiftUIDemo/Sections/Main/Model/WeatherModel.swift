@@ -17,6 +17,23 @@ struct WeatherModel: Decodable, Equatable {
     let now: NowModel?
     let threeDays: [ThreeDaysModel]?
     let monthWeather: [MonthWeatherModel]?
+    
+    enum CodingKeys: String, CodingKey {
+        case now, threeDays, monthWeather
+    }
+    
+    var dealArr: [[MonthWeatherModel]] {
+        var finalArr: [[MonthWeatherModel]] = []
+        var tempArr: [MonthWeatherModel] = []
+        self.monthWeather?.forEach({ (model) in
+            tempArr.append(model)
+            if tempArr.count % 7 == 0 {
+                finalArr.append(tempArr)
+                tempArr.removeAll()
+            }
+        })
+        return finalArr
+    }
 }
 
 struct NowModel: Decodable {

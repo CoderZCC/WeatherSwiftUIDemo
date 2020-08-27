@@ -48,7 +48,7 @@ struct WeatherMainView: View {
                 }
             }
             
-        }.foregroundColor(Color.blue).background(WebImage(self._vm.model?.now?.skin, configuration: { $0.resizable() }).scaledToFill()).edgesIgnoringSafeArea(.all).statusBar(hidden: false).onAppear {
+        }.foregroundColor(Color.white).background(WebImage(self._vm.model?.now?.skin, configuration: { $0.resizable() }).scaledToFill()).edgesIgnoringSafeArea(.all).statusBar(hidden: false).onAppear {
             
             self._vm.loadData()
             NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification, object: nil, queue: OperationQueue.current) { (_) in
@@ -152,40 +152,37 @@ struct CalendarView: View {
     @ObservedObject var vm: WeatherViewModel
     
     var body: some View {
-        
         VStack {
-            Text("天气日历")
+            Text("天气日历").fontWeight(.semibold).padding(.top, 10.0)
             HStack {
                 ForEach(kMonthDays.indices) { i in
-                    Text("星期\(kMonthDays[i])").font(Font.system(size: 14.0))
+                    Text("星期\(kMonthDays[i])").font(Font.system(size: 14.0)).fontWeight(.semibold).frame(width: (kScreenW - 64.0) / 7.0, height: 40.0, alignment: .center)
                 }
-            }.padding(.init(top: 10.0, leading: 0.0, bottom: 10.0, trailing: 0.0))
-            
-            ForEach(self.vm.model?.monthWeather ?? []) {model in
-
-                MonthContentView(model: model)
             }
-            
-            
-            
-        }
-        
-
-        
+            ForEach((self.vm.model?.dealArr ?? []).indices, id: \.self) { i in
+                HStack {
+                    ForEach((self.vm.model?.dealArr ?? [])[i].indices, id: \.self) { j in
+                        MonthContentView(model: self.vm.model?.dealArr[i][j])
+                    }
+                }
+            }
+        }.background(Color.black.opacity(0.3)).cornerRadius(8.0)
     }
 }
 
 // MARK: -天气日历内容
 struct MonthContentView: View {
-    var model: MonthWeatherModel
+    var model: MonthWeatherModel?
     
     var body: some View {
         VStack {
-            Text(self.model.day ?? "")
-            WebImage(self.model.img, placeholder: Text(self.model.imgDesc ?? "加载中..."), configuration: { $0.resizable() }).scaledToFit().frame(width: 30.0, height: 30.0, alignment: .center)
-            Text(self.model.tempRange ?? "")
-            Text(self.model.wind ?? "")
-        }
+            Text(self.model?.day ?? "").font(Font.system(size: 12.0)).fontWeight(.semibold)
+            WebImage(self.model?.img, placeholder: Text(self.model?.imgDesc ?? "加载中...")) { (img) -> Image in
+                return img.resizable()
+            }.frame(width: 30.0, height: 30.0, alignment: .center)
+            Text(self.model?.tempRange ?? "").font(Font.system(size: 12.0)).fontWeight(.semibold)
+            Text(self.model?.wind ?? "").font(Font.system(size: 12.0)).fontWeight(.semibold)
+        }.frame(width: (kScreenW - 64.0) / 7.0, height: 140.0).border(Color.clear, width: 1.0)
     }
 }
 
