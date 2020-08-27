@@ -10,9 +10,7 @@ import UIKit
 
 enum APIEnum {
     case address
-    case setAddress(cityId: Int)
-    case weatherNow
-    case weatherThreeDays
+    case weather(cityId: Int)
 }
 
 extension APIEnum {
@@ -21,28 +19,19 @@ extension APIEnum {
         switch self {
         case .address:
             return "/api/v1/weatheraddress"
-        case .setAddress(_):
-            return "/api/v1/weatheraddress"
-        case .weatherNow:
-            return "/api/v1/weathernow"
-        case .weatherThreeDays:
-            return "/api/v1/weatherthreedays"
+        case .weather(_):
+            return "/api/v1/weather"
         }
     }
     
     var method: String {
-        switch self {
-        case .setAddress(_):
-            return "POST"
-        default:
-            return "GET"
-        }
+        return "GET"
     }
     
     var body: [String: Any]? {
         switch self {
-        case .setAddress(let cityId):
-            return ["cityId": cityId]
+        case .weather(let cityId):
+            return ["addressId": cityId]
         default:
             return nil
         }
@@ -72,7 +61,14 @@ extension APIEnum {
         return request
     }
     
-    var headers: [String: String] {
-        return ["Content-Type": "application/json", "device-token": "MTU4NzczMzcyNzUzMzEzMTp0ZXN0"]
+    var headers: [String: String] {     
+        var userToken: String!
+        if let t = UserDefaults.standard.value(forKey: kTokenKey) as? String {
+            userToken = t
+        } else {
+            userToken = (String(Date().timeIntervalSince1970).replacingOccurrences(of: ".", with: "") + ":" + UIDevice.current.name).data(using: String.Encoding.utf8)?.base64EncodedString() ?? ""
+        }
+        userToken = "MTU4NzczMzcyNzUzMzEzMTp0ZXN0"
+        return ["Content-Type": "application/json", "device-token": userToken]
     }
 }

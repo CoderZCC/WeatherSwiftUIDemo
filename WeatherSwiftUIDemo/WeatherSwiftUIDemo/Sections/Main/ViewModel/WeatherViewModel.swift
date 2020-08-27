@@ -19,9 +19,9 @@ class WeatherViewModel: ObservableObject {
         let model = try? JSONDecoder().decode(BaseModel<WeatherModel>.self, from: d)
         self.model = model?.data
         
-//        APIManager.start(.weatherThreeDays, modelT: WeatherModel.self) { [weak self] (model) in
+//        guard let addressId = UserDefaults.standard.value(forKey: kAddressKey) as? Int else { return }
+//        APIManager.start(.weather(cityId: addressId), modelT: WeatherModel.self) { [weak self] (model) in
 //            if model != self?.model {
-//                print(model)
 //                DispatchQueue.main.async {
 //                    self?.model = model
 //                }

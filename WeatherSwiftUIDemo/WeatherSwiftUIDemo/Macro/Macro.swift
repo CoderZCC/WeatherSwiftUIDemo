@@ -23,3 +23,7 @@ let kWeekDays = ["天", "一", "二", "三", "四", "五", "六"]
 /// 水平方向间隔
 let kHorizontalSapce: CGFloat = 16.0
 
+let kTokenKey: String = "kTokenKey"
+/// 地区key
+let kAddressKey: String = "kAddressKey"
+

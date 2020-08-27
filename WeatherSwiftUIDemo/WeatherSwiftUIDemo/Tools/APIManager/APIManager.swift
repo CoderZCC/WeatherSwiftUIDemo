@@ -14,6 +14,10 @@ struct BaseModel<T: Decodable>: Decodable {
     let data: T?
 }
 
+struct NoResultModel: Decodable {
+    
+}
+
 enum APIError: Error {
     /// 网络出错
     case networkError
@@ -34,7 +38,7 @@ struct APIManager {
         let session = URLSession.shared
         let task = session.dataTask(with: target.request) { (data, rsp, error) in
             if let d = data {
-//                print(String(data: d, encoding: .utf8) ?? "")
+                print(String(data: d, encoding: .utf8) ?? "")
                 do {
                     let model = try JSONDecoder().decode(BaseModel<T>.self, from: d)
                     handler?(model.data)

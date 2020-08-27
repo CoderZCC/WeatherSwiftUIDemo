@@ -8,13 +8,30 @@
 
 import SwiftUI
 
-struct WeatherMainView: View {
+struct MainView: View {
+    /// 是否存在地区
+    @State private var _addressId: Int?
+    
+    var body: some View {
+        VStack {
+            if self._addressId != nil {
+                WeatherView()
+            } else {
+                AddressView(addressId: self.$_addressId)
+            }
+        }.onAppear {
+            self._addressId = UserDefaults.standard.value(forKey: kAddressKey) as? Int
+        }
+    }
+}
+
+struct WeatherView: View {
     
     /// @State只标注值类型,class是引用类型
     @ObservedObject private var _vm = WeatherViewModel()
-    @State var _isLoading: Bool = false
     
     var body: some View {
+        
         VStack {
             HStack(spacing: 10.0) {
                 Text(self._vm.model?.now?.address ?? "").font(Font.system(size: 20.0)).fontWeight(.semibold)
@@ -26,11 +43,11 @@ struct WeatherMainView: View {
                 }
             }.frame(height: kNavBarHeight).offset(y: kTopSafeH)
             
-            ScrollView {
+            ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading) {
                     AqiView(vm: self._vm)
                     Spacer(minLength: 10.0).frame(width: kScreenW - kHorizontalSapce * 2.0)
-                    WeatherView(vm: self._vm)
+                    WeatherMsgView(vm: self._vm)
                     
                     HStack(spacing: 20.0) {
                         Text(self._vm.model?.now?.humidity ?? "").fontWeight(.semibold)
@@ -59,7 +76,7 @@ struct WeatherMainView: View {
 }
 
 // MARK: -天气信息
-struct WeatherView: View {
+struct WeatherMsgView: View {
     @ObservedObject var vm: WeatherViewModel
     
     var body: some View {
@@ -192,8 +209,8 @@ struct ContentTextModifier: ViewModifier {
     }
 }
 
-struct WeatherMainView_Previews: PreviewProvider {
+struct WeatherView_Previews: PreviewProvider {
     static var previews: some View {
-        WeatherMainView()
+        WeatherView()
     }
 }

@@ -14,13 +14,16 @@
 		519872B124F4BD5F00ADC3F7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 519872B024F4BD5F00ADC3F7 /* Preview Assets.xcassets */; };
 		519872B424F4BD6000ADC3F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 519872B224F4BD6000ADC3F7 /* LaunchScreen.storyboard */; };
 		519872BF24F4BE8300ADC3F7 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519872BE24F4BE8300ADC3F7 /* APIManager.swift */; };
-		519872C124F4C23A00ADC3F7 /* WeatherMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519872C024F4C23A00ADC3F7 /* WeatherMainView.swift */; };
+		519872C124F4C23A00ADC3F7 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519872C024F4C23A00ADC3F7 /* WeatherView.swift */; };
 		519872C324F4C25500ADC3F7 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519872C224F4C25500ADC3F7 /* WeatherModel.swift */; };
 		519872C624F4C37900ADC3F7 /* Macro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519872C524F4C37900ADC3F7 /* Macro.swift */; };
 		519872C824F4D31300ADC3F7 /* APIEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519872C724F4D31300ADC3F7 /* APIEnum.swift */; };
 		519872CB24F4DB9400ADC3F7 /* WebImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519872CA24F4DB9400ADC3F7 /* WebImage.swift */; };
 		519872CF24F4E3D200ADC3F7 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519872CE24F4E3D200ADC3F7 /* WeatherViewModel.swift */; };
 		51E4699524F5F05F009A3D85 /* Color-ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E4699424F5F05F009A3D85 /* Color-ext.swift */; };
+		51EDF3C624F798740019C101 /* AddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EDF3C524F798740019C101 /* AddressView.swift */; };
+		51EDF3C824F799F30019C101 /* AddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EDF3C724F799F30019C101 /* AddressViewModel.swift */; };
+		51EDF3CA24F79A440019C101 /* AddressModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EDF3C924F79A440019C101 /* AddressModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,7 +36,7 @@
 		519872B324F4BD6000ADC3F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		519872B524F4BD6000ADC3F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		519872BE24F4BE8300ADC3F7 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
-		519872C024F4C23A00ADC3F7 /* WeatherMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherMainView.swift; sourceTree = "<group>"; };
+		519872C024F4C23A00ADC3F7 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 		519872C224F4C25500ADC3F7 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		519872C524F4C37900ADC3F7 /* Macro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Macro.swift; sourceTree = "<group>"; };
 		519872C724F4D31300ADC3F7 /* APIEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnum.swift; sourceTree = "<group>"; };
@@ -41,6 +44,9 @@
 		519872CE24F4E3D200ADC3F7 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
 		51C8885824F7572000021D5E /* weather.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = weather.entitlements; sourceTree = "<group>"; };
 		51E4699424F5F05F009A3D85 /* Color-ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color-ext.swift"; sourceTree = "<group>"; };
+		51EDF3C524F798740019C101 /* AddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressView.swift; sourceTree = "<group>"; };
+		51EDF3C724F799F30019C101 /* AddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressViewModel.swift; sourceTree = "<group>"; };
+		51EDF3C924F79A440019C101 /* AddressModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,7 +166,8 @@
 		51E4699724F5F2BD009A3D85 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				519872C024F4C23A00ADC3F7 /* WeatherMainView.swift */,
+				519872C024F4C23A00ADC3F7 /* WeatherView.swift */,
+				51EDF3C524F798740019C101 /* AddressView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -169,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				519872C224F4C25500ADC3F7 /* WeatherModel.swift */,
+				51EDF3C924F79A440019C101 /* AddressModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -177,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				519872CE24F4E3D200ADC3F7 /* WeatherViewModel.swift */,
+				51EDF3C724F799F30019C101 /* AddressViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -255,11 +264,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				519872CB24F4DB9400ADC3F7 /* WebImage.swift in Sources */,
-				519872C124F4C23A00ADC3F7 /* WeatherMainView.swift in Sources */,
+				519872C124F4C23A00ADC3F7 /* WeatherView.swift in Sources */,
+				51EDF3C824F799F30019C101 /* AddressViewModel.swift in Sources */,
 				519872BF24F4BE8300ADC3F7 /* APIManager.swift in Sources */,
 				519872C324F4C25500ADC3F7 /* WeatherModel.swift in Sources */,
+				51EDF3C624F798740019C101 /* AddressView.swift in Sources */,
 				519872AA24F4BD5D00ADC3F7 /* SceneDelegate.swift in Sources */,
 				519872CF24F4E3D200ADC3F7 /* WeatherViewModel.swift in Sources */,
+				51EDF3CA24F79A440019C101 /* AddressModel.swift in Sources */,
 				519872C624F4C37900ADC3F7 /* Macro.swift in Sources */,
 				51E4699524F5F05F009A3D85 /* Color-ext.swift in Sources */,
 				519872C824F4D31300ADC3F7 /* APIEnum.swift in Sources */,

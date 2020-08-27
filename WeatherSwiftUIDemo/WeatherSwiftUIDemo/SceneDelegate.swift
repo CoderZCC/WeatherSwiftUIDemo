@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate {
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
-        let contentView = WeatherMainView()
+        let contentView = MainView()
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
             window.rootViewController = UIHostingController(rootView: contentView)
