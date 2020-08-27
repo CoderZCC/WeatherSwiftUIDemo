@@ -54,7 +54,7 @@ struct ThreeDaysModel: Decodable, Identifiable, Hashable {
     }
 }
 
-struct MonthWeatherModel: Decodable, Identifiable {
+struct MonthWeatherModel: Decodable, Identifiable, Hashable {
     var id = UUID()
     
     let day: String?
@@ -68,7 +68,3 @@ struct MonthWeatherModel: Decodable, Identifiable {
     }
 }
 
-struct TestModel: Identifiable, Hashable {
-    var id = UUID()
-    var name: String
-}

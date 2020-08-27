@@ -17,3 +17,5 @@ let kNavBarHeight: CGFloat = 44.0 + (kWindow?.safeAreaInsets.top ?? 20.0)
 let kTopSafeH: CGFloat = 20.0
 
 let kImageFilePath = NSHomeDirectory() + "/Documents/images"
+
+let kMonthDays = ["天", "一", "二", "三", "四", "五", "六"]

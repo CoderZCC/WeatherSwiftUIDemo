@@ -48,7 +48,7 @@ struct WeatherMainView: View {
                 }
             }
             
-        }.foregroundColor(Color.white).background(WebImage(self._vm.model?.now?.skin, configuration: { $0.resizable() }).scaledToFill()).edgesIgnoringSafeArea(.all).statusBar(hidden: false).onAppear {
+        }.foregroundColor(Color.blue).background(WebImage(self._vm.model?.now?.skin, configuration: { $0.resizable() }).scaledToFill()).edgesIgnoringSafeArea(.all).statusBar(hidden: false).onAppear {
             
             self._vm.loadData()
             NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification, object: nil, queue: OperationQueue.current) { (_) in
@@ -155,10 +155,37 @@ struct CalendarView: View {
         
         VStack {
             Text("天气日历")
+            HStack {
+                ForEach(kMonthDays.indices) { i in
+                    Text("星期\(kMonthDays[i])").font(Font.system(size: 14.0))
+                }
+            }.padding(.init(top: 10.0, leading: 0.0, bottom: 10.0, trailing: 0.0))
+            
+            ForEach(self.vm.model?.monthWeather ?? []) {model in
+
+                MonthContentView(model: model)
+            }
+            
+            
+            
         }
         
 
         
+    }
+}
+
+// MARK: -天气日历内容
+struct MonthContentView: View {
+    var model: MonthWeatherModel
+    
+    var body: some View {
+        VStack {
+            Text(self.model.day ?? "")
+            WebImage(self.model.img, placeholder: Text(self.model.imgDesc ?? "加载中..."), configuration: { $0.resizable() }).scaledToFit().frame(width: 30.0, height: 30.0, alignment: .center)
+            Text(self.model.tempRange ?? "")
+            Text(self.model.wind ?? "")
+        }
     }
 }
 
