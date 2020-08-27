@@ -14,18 +14,18 @@ class WeatherViewModel: ObservableObject {
     @Published var model: WeatherModel?
     
     func loadData() {
-        let filePath = Bundle.main.path(forResource: "test", ofType: "json")!
-        let d = try! Data(contentsOf: URL(fileURLWithPath: filePath))
-        let model = try? JSONDecoder().decode(BaseModel<WeatherModel>.self, from: d)
-        self.model = model?.data
+//        let filePath = Bundle.main.path(forResource: "test", ofType: "json")!
+//        let d = try! Data(contentsOf: URL(fileURLWithPath: filePath))
+//        let model = try? JSONDecoder().decode(BaseModel<WeatherModel>.self, from: d)
+//        self.model = model?.data
         
-//        guard let addressId = UserDefaults.standard.value(forKey: kAddressKey) as? Int else { return }
-//        APIManager.start(.weather(cityId: addressId), modelT: WeatherModel.self) { [weak self] (model) in
-//            if model != self?.model {
-//                DispatchQueue.main.async {
-//                    self?.model = model
-//                }
-//            }
-//        }
+        guard let addressId = UserDefaults.standard.value(forKey: kAddressKey) as? Int else { return }
+        APIManager.start(.weather(cityId: addressId), modelT: WeatherModel.self) { [weak self] (model) in
+            if model != self?.model {
+                DispatchQueue.main.async {
+                    self?.model = model
+                }
+            }
+        }
     }
 }

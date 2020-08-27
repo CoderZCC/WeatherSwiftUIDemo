@@ -8,38 +8,55 @@
 
 import SwiftUI
 
-struct MainView: View {
-    /// 是否存在地区
-    @State private var _addressId: Int?
-    
-    var body: some View {
-        VStack {
-            if self._addressId != nil {
-                WeatherView()
-            } else {
-                AddressView(addressId: self.$_addressId)
-            }
-        }.onAppear {
-            self._addressId = UserDefaults.standard.value(forKey: kAddressKey) as? Int
-        }
-    }
-}
+//struct MainView: View {
+//    /// 是否存在地区
+//    @State private var _isShowAddress: Bool = false
+//
+//    var body: some View {
+//        VStack {
+//            if self._isShowAddress {
+////                AddressView(isShowAddress: self.$_isShowAddress)
+//                AddressView()
+//            } else {
+//                WeatherView()
+//            }
+//        }.onAppear {
+//            self._isShowAddress = (UserDefaults.standard.value(forKey: kAddressKey) == nil)
+//        }
+//    }
+//}
 
 struct WeatherView: View {
     
     /// @State只标注值类型,class是引用类型
     @ObservedObject private var _vm = WeatherViewModel()
+    @State var isShow: Bool = false
     
     var body: some View {
         
+        ZStack {
+            self.contentView.onAppear {
+                self._vm.loadData()
+                NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification, object: nil, queue: OperationQueue.current) { (_) in
+                    self._vm.loadData()
+                }
+            }
+            if self.isShow {
+//                AddressView(isShow: self.$isShow).offset(x: 0, y: self.isShow ? 0 : kScreenH).animation(.spring())
+                AddressView(isShow: self.$isShow)
+            }
+        }
+    }
+    
+    var contentView: some View {
         VStack {
             HStack(spacing: 10.0) {
-                Text(self._vm.model?.now?.address ?? "").font(Font.system(size: 20.0)).fontWeight(.semibold)
                 Button(action: {
-                    print("aaa")
+                    print("啊啊啊啊")
+                    self.isShow = true
                     
                 }) {
-                    Image(systemName: "plus.circle.fill")
+                    Text(self._vm.model?.now?.address ?? "").font(Font.system(size: 20.0)).fontWeight(.semibold)
                 }
             }.frame(height: kNavBarHeight).offset(y: kTopSafeH)
             
@@ -65,14 +82,9 @@ struct WeatherView: View {
                 }
             }
             
-        }.foregroundColor(Color.white).background(WebImage(self._vm.model?.now?.skin, configuration: { $0.resizable() }).scaledToFill()).edgesIgnoringSafeArea(.all).statusBar(hidden: false).onAppear {
-            
-            self._vm.loadData()
-            NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification, object: nil, queue: OperationQueue.current) { (_) in
-                self._vm.loadData()
-            }
-        }
+        }.foregroundColor(Color.white).background(WebImage(self._vm.model?.now?.skin, configuration: { $0.resizable() }).scaledToFill()).edgesIgnoringSafeArea(.all).statusBar(hidden: false)
     }
+    
 }
 
 // MARK: -天气信息

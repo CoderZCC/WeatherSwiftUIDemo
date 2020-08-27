@@ -30,11 +30,6 @@ struct APIManager {
     /// 网络请求
     /// - Parameter modelT: model模型
     static func start<T: Decodable>(_ target: APIEnum, modelT: T.Type, handler: ((T?)->Void)? ) {
-//        let filePath = Bundle.main.path(forResource: "test", ofType: "json")!
-//        let d = try! Data(contentsOf: URL(fileURLWithPath: filePath))
-//        let model = try? JSONDecoder().decode(BaseModel<T>.self, from: d)
-//        handler?(model?.data)
-        
         let session = URLSession.shared
         let task = session.dataTask(with: target.request) { (data, rsp, error) in
             if let d = data {

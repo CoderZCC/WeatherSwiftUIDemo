@@ -10,17 +10,17 @@ import SwiftUI
 
 struct AddressView: View {
     
-    @Binding var addressId: Int?
+    @Binding var isShow: Bool
     @ObservedObject private var _vm = AddressViewModel()
-
+    
     var body: some View {
         return NavigationView {
             List {
                 Section(header: Text("北京")) {
                     ForEach(self._vm.modelArr ?? []) { model in
                         Button(action: {
-                            self._vm.setAddress(model: model) { (addressId) in
-                                self.addressId = addressId
+                            self._vm.setAddress(model: model) { (_) in
+                                self.isShow = false
                             }
                         }) {
                             AddressContentView(model: model)
@@ -51,7 +51,7 @@ struct AddressContentView: View {
 
 struct AddressView_Previews: PreviewProvider {
     static var previews: some View {
-//        AddressView(addressId: nil)
+//        AddressView()
         Text("")
     }
 }
