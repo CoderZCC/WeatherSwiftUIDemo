@@ -116,8 +116,6 @@ struct TipsView: View {
     }
 }
 
-let testModel = [TestModel(name: "zcc"), TestModel(name: "ws")]
-
 // MARK: -未来三天
 struct FutureView: View {
     @ObservedObject var vm: WeatherViewModel
