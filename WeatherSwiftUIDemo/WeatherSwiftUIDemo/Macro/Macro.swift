@@ -8,6 +8,9 @@
 
 import SwiftUI
 
+let kDebug: Bool = false
+//let kDebug: Bool = true
+
 var kWindow: UIWindow?
 let kBasePath: String = "http://www.ccserver.top"
 let kScreenW = UIScreen.main.bounds.width

@@ -13,26 +13,46 @@ class AddressViewModel: ObservableObject {
     @Published var modelArr: [AddressModel]?
     
     func loadData() {
-        APIManager.start(.address, modelT: [AddressModel].self) { [weak self] (model) in
-            if model != self?.modelArr {
-                DispatchQueue.main.async {
-                    self?.modelArr = model
-                }
+        let filePath = Bundle.main.path(forResource: "address", ofType: "json")!
+        let d = try! Data(contentsOf: URL(fileURLWithPath: filePath))
+        let model = try? JSONDecoder().decode(BaseModel<[AddressModel]>.self, from: d)
+        // 查出已选地区
+        var finalArr = model?.data
+        if let cacheId = UserDefaults.standard.value(forKey: kAddressKey) as? Int {
+            for i in 0..<(finalArr?.count ?? 0) {
+                let addressId = finalArr?[i].addressId
+                finalArr?[i].isChoice = addressId == cacheId
             }
         }
+        self.modelArr = finalArr
+        
+//        APIManager.start(.address, modelT: [AddressModel].self) { [weak self] (model) in
+//            if model != self?.modelArr {
+//                // 查出已选地区
+//                var finalArr = model
+//                if let cacheId = UserDefaults.standard.value(forKey: kAddressKey) as? Int {
+//                    for i in 0..<(finalArr?.count ?? 0) {
+//                        let addressId = finalArr?[i].addressId
+//                        finalArr?[i].isChoice = addressId == cacheId
+//                    }
+//                }
+//                DispatchQueue.main.async {
+//                    self?.modelArr = finalArr
+//                }
+//            }
+//        }
     }
     
     func setAddress(model: AddressModel?, block: ((Int?)->Void)?) {
         guard let model = model else { return }
         UserDefaults.standard.setValue(model.addressId, forKey: kAddressKey)
         UserDefaults.standard.synchronize()
-        var addressId: Int?
         for i in 0..<(self.modelArr?.count ?? 0) {
-            addressId = self.modelArr?[i].addressId
+            let addressId = self.modelArr?[i].addressId
             self.modelArr?[i].isChoice = addressId == model.addressId
         }
         DispatchQueue.main.async {
-            block?(addressId)
+            block?(model.addressId)
         }
     }
 }

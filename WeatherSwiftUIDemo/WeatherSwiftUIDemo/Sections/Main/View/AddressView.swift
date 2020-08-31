@@ -11,6 +11,7 @@ import SwiftUI
 struct AddressView: View {
     
     @Binding var isShow: Bool
+    @ObservedObject var weatherVM: WeatherViewModel
     @ObservedObject private var _vm = AddressViewModel()
     
     var body: some View {
@@ -19,14 +20,15 @@ struct AddressView: View {
                 Section(header: Text("北京")) {
                     ForEach(self._vm.modelArr ?? []) { model in
                         Button(action: {
-                            self._vm.setAddress(model: model) { (_) in
+                            self._vm.setAddress(model: model) { (addressId) in
+                                self.weatherVM.loadData()
                                 self.isShow.toggle()
                             }
                         }) {
                             AddressContentView(model: model)
                         }
                     }
-                }
+                }.foregroundColor(Color.black)
             }
             .navigationBarTitle("设置地区")
         }.onAppear(perform: self._vm.loadData)
@@ -50,8 +52,11 @@ struct AddressContentView: View {
 }
 
 struct AddressView_Previews: PreviewProvider {
+    
+    @State var isShow: Bool = true
+    @State var addressId: Int? = 151
+
     static var previews: some View {
-//        AddressView()
         Text("")
     }
 }
