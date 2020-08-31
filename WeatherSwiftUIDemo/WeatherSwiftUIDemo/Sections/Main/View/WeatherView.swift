@@ -36,7 +36,10 @@ struct WeatherView: View {
             
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading) {
-                    AqiView(model: self._vm.model?.now)
+                    HStack {
+                        AqiView(model: self._vm.model?.now)
+                        WarnView(model: self._vm.model?.now)
+                    }
                     Spacer(minLength: 10.0).frame(width: kScreenW - kHorizontalSapce * 2.0)
                     WeatherMsgView(model: self._vm.model?.now)
                     
@@ -106,6 +109,35 @@ struct AqiView: View {
             }
             Text("\(self.model?.aqi ?? 0)" + " " + (self.model?.aqiDesc ?? "")).fontWeight(.semibold)
         }.padding(.init(top: 0.0, leading: 8.0, bottom: 0.0, trailing: 16.0)).frame(height: 42.0).background(Color.black.opacity(0.3)).cornerRadius(21.0)
+    }
+}
+
+// MARK: -预警
+struct WarnView: View {
+    var model: NowModel?
+    
+    var body: some View {
+        return HStack(spacing: 10.0) {
+            ZStack {
+                Group {
+                    if self.model?.warnNum == 0 {
+                        Circle().fill(Color(r: 126, g: 186, b: 25))
+                    } else if self.model?.warnNum == 1 {
+                        Circle().fill(Color(r: 205, g: 161, b: 15))
+                    } else if self.model?.warnNum == 2 {
+                        Circle().fill(Color(r: 237, g: 134, b: 10))
+                    } else if self.model?.warnNum == 3 {
+                        Circle().fill(Color(r: 216, g: 32, b: 21))
+                    } else if self.model?.warnNum == 4 {
+                        Circle().fill(Color(r: 76, g: 60, b: 134))
+                    }
+                }.frame(width: 30.0, height: 30.0)
+                WebImage(self.model?.warnIcon) { (img) -> Image in
+                    return img.resizable()
+                }.frame(width: 15.0, height: 15.0)
+            }
+            Text("\(self.model?.warn ?? "")" + " " + (self.model?.warnDesc ?? "")).fontWeight(.semibold)
+        }.padding(.init(top: 0.0, leading: 8.0, bottom: 0.0, trailing: 16.0)).frame(height: 42.0).background(Color.black.opacity(0.3)).cornerRadius(21.0).opacity(self.model?.warn == nil ? 0.0 : 1.0)
     }
 }
 

@@ -49,6 +49,10 @@ struct NowModel: Decodable {
     let aqiIcon: String?
     let aqiDesc: String?
     let aqiNum: Int?
+    let warnIcon: String?
+    let warn: String?
+    let warnDesc: String?
+    let warnNum: Int?
     let updateTime: String?
     let address: String?
 }

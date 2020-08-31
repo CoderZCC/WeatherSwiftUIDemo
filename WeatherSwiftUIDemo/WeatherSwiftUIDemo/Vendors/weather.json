@@ -4,29 +4,33 @@
     "data": {
         "now": {
             "skin": "https://h5tq.moji.com/tianqi/assets/images/skin/day_1.jpg",
-            "temperature": "30",
-            "tempRange": "20°/32°",
+            "temperature": "32",
+            "tempRange": "24°/32°",
             "thubmImage": "https://h5tq.moji.com/tianqi/assets/images/weather/w1.png",
             "description": "多云",
-            "humidity": "湿度 53%",
-            "wind": "东北风2级",
-            "tips": "有些热了，记得多喝水。",
-            "aqi": 35,
+            "humidity": "湿度 62%",
+            "wind": "西风2级",
+            "tips": "很闷热，感觉像在蒸桑拿。",
+            "aqi": 49,
             "aqiIcon": "https://h5tq.moji.com/tianqi/assets/images/aqi/1.png",
             "aqiDesc": "优",
             "aqiNum": 0,
-            "updateTime": "今天16:24更新",
-            "address": "北京市朝阳区"
+            "updateTime": "今天15:25更新",
+            "address": "凤台县",
+            "warnIcon": "https://h5tq.moji.com/tianqi/assets/images/warn/13.png",
+            "warn": "雷电",
+            "warnDesc": "黄色",
+            "warnNum": 1
         },
         "threeDays": [
             {
                 "time": "今天",
                 "thumbImage": "https://h5tq.moji.com/tianqi/assets/images/weather/w1.png",
                 "description": "多云",
-                "tempRange": "20°/32°",
-                "wind": "东南风",
-                "wind_level": "1级",
-                "aqi": 39,
+                "tempRange": "24°/32°",
+                "wind": "东北风",
+                "wind_level": "2级",
+                "aqi": 49,
                 "aqiDesc": "优",
                 "aqiNum": 0
             },
@@ -34,21 +38,21 @@
                 "time": "明天",
                 "thumbImage": "https://h5tq.moji.com/tianqi/assets/images/weather/w1.png",
                 "description": "多云",
-                "tempRange": "22°/30°",
-                "wind": "西南风",
+                "tempRange": "23°/32°",
+                "wind": "北风",
                 "wind_level": "1级",
-                "aqi": 99,
+                "aqi": 77,
                 "aqiDesc": "良",
                 "aqiNum": 1
             },
             {
                 "time": "后天",
-                "thumbImage": "https://h5tq.moji.com/tianqi/assets/images/weather/w2.png",
-                "description": "阴",
-                "tempRange": "23°/30°",
-                "wind": "东南风",
-                "wind_level": "2级",
-                "aqi": 99,
+                "thumbImage": "https://h5tq.moji.com/tianqi/assets/images/weather/w1.png",
+                "description": "多云",
+                "tempRange": "21°/31°",
+                "wind": "西北风",
+                "wind_level": "1级",
+                "aqi": 77,
                 "aqiDesc": "良",
                 "aqiNum": 1
             }
@@ -100,218 +104,218 @@
                 "day": "01",
                 "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w4.png",
                 "imgDesc": "雷阵雨                                ",
-                "tempRange": "24/31°",
-                "wind": "南风  1级"
+                "tempRange": "27/34°",
+                "wind": "东南风  2级"
             },
             {
                 "day": "02",
-                "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w4.png",
-                "imgDesc": "雷阵雨                                ",
-                "tempRange": "22/34°",
-                "wind": "东南风  3-4级"
+                "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w1.png",
+                "imgDesc": "多云                                ",
+                "tempRange": "26/33°",
+                "wind": "东南风  1级"
             },
             {
                 "day": "03",
                 "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w1.png",
                 "imgDesc": "多云                                ",
-                "tempRange": "24/35°",
-                "wind": "南风  1级"
+                "tempRange": "26/35°",
+                "wind": "东南风  1级"
             },
             {
                 "day": "04",
                 "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w1.png",
                 "imgDesc": "多云                                ",
-                "tempRange": "25/36°",
-                "wind": "东南风  2级"
+                "tempRange": "25/35°",
+                "wind": "东北风  1级"
             },
             {
                 "day": "05",
-                "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w4.png",
-                "imgDesc": "雷阵雨                                ",
-                "tempRange": "23/32°",
-                "wind": "北风  2级"
+                "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w2.png",
+                "imgDesc": "阴                                ",
+                "tempRange": "27/35°",
+                "wind": "南风  2级"
             },
             {
                 "day": "06",
-                "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w2.png",
-                "imgDesc": "阴                                ",
-                "tempRange": "23/32°",
-                "wind": "东南风  2级"
+                "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w1.png",
+                "imgDesc": "多云                                ",
+                "tempRange": "27/34°",
+                "wind": "南风  3-4级"
             },
             {
                 "day": "07",
-                "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w1.png",
-                "imgDesc": "多云                                ",
-                "tempRange": "22/33°",
-                "wind": "东南风  1级"
+                "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w7.png",
+                "imgDesc": "小雨                                ",
+                "tempRange": "25/31°",
+                "wind": "南风  2级"
             },
             {
                 "day": "08",
-                "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w2.png",
-                "imgDesc": "阴                                ",
-                "tempRange": "23/33°",
-                "wind": "西南风  1级"
+                "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w7.png",
+                "imgDesc": "小雨                                ",
+                "tempRange": "24/29°",
+                "wind": "南风  1级"
             },
             {
                 "day": "09",
-                "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w1.png",
-                "imgDesc": "多云                                ",
-                "tempRange": "22/33°",
-                "wind": "西南风  2级"
+                "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w7.png",
+                "imgDesc": "小雨                                ",
+                "tempRange": "25/31°",
+                "wind": "西风  1级"
             },
             {
                 "day": "10",
-                "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w4.png",
-                "imgDesc": "雷阵雨                                ",
-                "tempRange": "22/31°",
-                "wind": "南风  2级"
+                "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w1.png",
+                "imgDesc": "多云                                ",
+                "tempRange": "25/32°",
+                "wind": "南风  1级"
             },
             {
                 "day": "11",
-                "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w1.png",
-                "imgDesc": "多云                                ",
-                "tempRange": "25/34°",
-                "wind": "南风  2级"
+                "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w4.png",
+                "imgDesc": "雷阵雨                                ",
+                "tempRange": "26/32°",
+                "wind": "东南风  1级"
             },
             {
                 "day": "12",
-                "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w9.png",
-                "imgDesc": "大雨                                ",
-                "tempRange": "23/32°",
-                "wind": "东风  3-4级"
+                "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w4.png",
+                "imgDesc": "雷阵雨                                ",
+                "tempRange": "26/32°",
+                "wind": "南风  2级"
             },
             {
                 "day": "13",
-                "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w1.png",
-                "imgDesc": "多云                                ",
-                "tempRange": "23/33°",
-                "wind": "西南风  1级"
+                "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w2.png",
+                "imgDesc": "阴                                ",
+                "tempRange": "27/34°",
+                "wind": "南风  3-4级"
             },
             {
                 "day": "14",
-                "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w0.png",
-                "imgDesc": "晴                                ",
+                "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w1.png",
+                "imgDesc": "多云                                ",
                 "tempRange": "26/34°",
-                "wind": "南风  1级"
+                "wind": "西南风  3-4级"
             },
             {
                 "day": "15",
                 "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w1.png",
                 "imgDesc": "多云                                ",
-                "tempRange": "22/32°",
-                "wind": "西南风  1级"
+                "tempRange": "26/36°",
+                "wind": "南风  3-4级"
             },
             {
                 "day": "16",
-                "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w4.png",
-                "imgDesc": "雷阵雨                                ",
-                "tempRange": "22/28°",
-                "wind": "西南风  1级"
+                "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w0.png",
+                "imgDesc": "晴                                ",
+                "tempRange": "27/36°",
+                "wind": "南风  1级"
             },
             {
                 "day": "17",
-                "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w2.png",
-                "imgDesc": "阴                                ",
-                "tempRange": "23/28°",
-                "wind": "西南风  2级"
+                "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w1.png",
+                "imgDesc": "多云                                ",
+                "tempRange": "26/36°",
+                "wind": "东南风  2级"
             },
             {
                 "day": "18",
-                "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w8.png",
-                "imgDesc": "中雨                                ",
-                "tempRange": "21/28°",
-                "wind": "西北风  2级"
+                "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w1.png",
+                "imgDesc": "多云                                ",
+                "tempRange": "26/36°",
+                "wind": "南风  1级"
             },
             {
                 "day": "19",
-                "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w1.png",
-                "imgDesc": "多云                                ",
-                "tempRange": "20/26°",
-                "wind": "北风  1级"
-            },
-            {
-                "day": "20",
-                "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w1.png",
-                "imgDesc": "多云                                ",
-                "tempRange": "17/28°",
-                "wind": "南风  1级"
-            },
-            {
-                "day": "21",
-                "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w0.png",
-                "imgDesc": "晴                                ",
-                "tempRange": "17/28°",
-                "wind": "南风  1级"
-            },
-            {
-                "day": "22",
-                "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w1.png",
-                "imgDesc": "多云                                ",
-                "tempRange": "20/28°",
+                "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w4.png",
+                "imgDesc": "雷阵雨                                ",
+                "tempRange": "25/35°",
                 "wind": "南风  2级"
             },
             {
-                "day": "23",
+                "day": "20",
+                "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w4.png",
+                "imgDesc": "雷阵雨                                ",
+                "tempRange": "23/31°",
+                "wind": "东北风  1级"
+            },
+            {
+                "day": "21",
+                "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w4.png",
+                "imgDesc": "雷阵雨                                ",
+                "tempRange": "23/29°",
+                "wind": "东北风  1级"
+            },
+            {
+                "day": "22",
                 "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w7.png",
                 "imgDesc": "小雨                                ",
-                "tempRange": "22/28°",
-                "wind": "南风  1级"
+                "tempRange": "24/31°",
+                "wind": "东风  2级"
+            },
+            {
+                "day": "23",
+                "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w0.png",
+                "imgDesc": "晴                                ",
+                "tempRange": "25/34°",
+                "wind": "南风  2级"
             },
             {
                 "day": "24",
-                "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w0.png",
-                "imgDesc": "晴                                ",
-                "tempRange": "20/31°",
+                "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w4.png",
+                "imgDesc": "雷阵雨                                ",
+                "tempRange": "24/34°",
                 "wind": "西南风  1级"
             },
             {
                 "day": "25",
                 "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w1.png",
                 "imgDesc": "多云                                ",
-                "tempRange": "22/33°",
-                "wind": "南风  2级"
+                "tempRange": "23/30°",
+                "wind": "西北风  1级"
             },
             {
                 "day": "26",
-                "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w1.png",
-                "imgDesc": "多云                                ",
-                "tempRange": "22/29°",
-                "wind": "东风  2级"
+                "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w4.png",
+                "imgDesc": "雷阵雨                                ",
+                "tempRange": "20/28°",
+                "wind": "西北风  1级"
             },
             {
                 "day": "27",
                 "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w1.png",
                 "imgDesc": "多云                                ",
-                "tempRange": "20/32°",
-                "wind": "东南风  1级"
+                "tempRange": "21/28°",
+                "wind": "西北风  2级"
             },
             {
                 "day": "28",
                 "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w1.png",
                 "imgDesc": "多云                                ",
-                "tempRange": "22/30°",
-                "wind": "西南风  1级"
+                "tempRange": "21/32°",
+                "wind": "东北风  1级"
             },
             {
                 "day": "29",
-                "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w2.png",
-                "imgDesc": "阴                                ",
-                "tempRange": "23/30°",
-                "wind": "东南风  2级"
+                "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w1.png",
+                "imgDesc": "多云                                ",
+                "tempRange": "22/32°",
+                "wind": "东北风  2级"
             },
             {
                 "day": "30",
-                "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w4.png",
-                "imgDesc": "雷阵雨                                ",
+                "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w1.png",
+                "imgDesc": "多云                                ",
                 "tempRange": "23/31°",
-                "wind": "东南风  1级"
+                "wind": "北风  1级"
             },
             {
                 "day": "31",
-                "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w4.png",
-                "imgDesc": "雷阵雨                                ",
-                "tempRange": "20/29°",
-                "wind": "北风  1级"
+                "img": "https://h5tq.moji.com/tianqi/assets/images/weather/w1.png",
+                "imgDesc": "多云                                ",
+                "tempRange": "24/32°",
+                "wind": "东北风  2级"
             },
             {
                 "day": "",
