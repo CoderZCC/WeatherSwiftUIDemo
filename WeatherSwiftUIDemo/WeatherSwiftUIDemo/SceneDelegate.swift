@@ -2,7 +2,7 @@
 //  SceneDelegate.swift
 //  WeatherSwiftUIDemo
 //
-//  Created by 北京摩学教育科技有限公司 on 2020/8/25.
+//  Created by ZCC on 2020/8/25.
 //  Copyright © 2020 zcc. All rights reserved.
 //
 
@@ -15,9 +15,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate {
     var window: UIWindow?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        
-        UserDefaults.standard.setValue(276, forKey: kAddressKey)
-        UserDefaults.standard.synchronize()
         
         let contentView = WeatherView()
         if let windowScene = scene as? UIWindowScene {

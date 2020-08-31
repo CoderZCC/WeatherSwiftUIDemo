@@ -2,7 +2,7 @@
 //  WeatherAddressView.swift
 //  WeatherSwiftUIDemo
 //
-//  Created by 北京摩学教育科技有限公司 on 2020/8/27.
+//  Created by ZCC on 2020/8/27.
 //  Copyright © 2020 zcc. All rights reserved.
 //
 
@@ -11,25 +11,47 @@ import SwiftUI
 struct AddressView: View {
     
     @Binding var isShow: Bool
+    @ObservedObject var weatherVM: WeatherViewModel
     @ObservedObject private var _vm = AddressViewModel()
     
     var body: some View {
         return NavigationView {
             List {
+                SearchView(vm: self._vm)
                 Section(header: Text("北京")) {
                     ForEach(self._vm.modelArr ?? []) { model in
                         Button(action: {
-                            self._vm.setAddress(model: model) { (_) in
+                            if model.isChoice {
                                 self.isShow.toggle()
+                            } else {
+                                self._vm.setAddress(model: model) { (_) in
+                                    self.weatherVM.loadData()
+                                    self.isShow.toggle()
+                                }
                             }
                         }) {
                             AddressContentView(model: model)
                         }
                     }
-                }
+                }.foregroundColor(Color.black)
             }
-            .navigationBarTitle("设置地区")
-        }.onAppear(perform: self._vm.loadData)
+            .navigationBarTitle("选择地区")
+        }.background(Color.white).onAppear(perform: self._vm.loadData)
+    }
+}
+
+struct SearchView: View {
+    
+    @ObservedObject var vm: AddressViewModel
+    @State var _input: String = ""
+    
+    var body: some View {
+        VStack {
+            TextField("搜索", text: self.$_input, onCommit:  {
+                self.vm.search(self._input)
+                }).keyboardType(.default).textFieldStyle(RoundedBorderTextFieldStyle())
+            
+        }.foregroundColor(Color.black)
     }
 }
 
@@ -50,8 +72,11 @@ struct AddressContentView: View {
 }
 
 struct AddressView_Previews: PreviewProvider {
+    
+    @State var isShow: Bool = true
+    @ObservedObject private var _vm = WeatherViewModel()
+    
     static var previews: some View {
-//        AddressView()
-        Text("")
+        AddressView(isShow: AddressView_Previews().$isShow, weatherVM: AddressView_Previews()._vm)
     }
 }

@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5118800824FC99B600E8D59D /* address.json in Resources */ = {isa = PBXBuildFile; fileRef = 5118800624FC99B600E8D59D /* address.json */; };
+		5118800924FC99B600E8D59D /* weather.json in Resources */ = {isa = PBXBuildFile; fileRef = 5118800724FC99B600E8D59D /* weather.json */; };
 		5140EB9724F508A000A33640 /* DINCond-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5140EB9624F508A000A33640 /* DINCond-Bold.otf */; };
-		5140EB9924F5098200A33640 /* test.json in Resources */ = {isa = PBXBuildFile; fileRef = 5140EB9824F5098200A33640 /* test.json */; };
 		519872AA24F4BD5D00ADC3F7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519872A924F4BD5D00ADC3F7 /* SceneDelegate.swift */; };
 		519872AE24F4BD5F00ADC3F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 519872AD24F4BD5F00ADC3F7 /* Assets.xcassets */; };
 		519872B124F4BD5F00ADC3F7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 519872B024F4BD5F00ADC3F7 /* Preview Assets.xcassets */; };
@@ -27,8 +28,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5118800624FC99B600E8D59D /* address.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = address.json; sourceTree = "<group>"; };
+		5118800724FC99B600E8D59D /* weather.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = weather.json; sourceTree = "<group>"; };
 		5140EB9624F508A000A33640 /* DINCond-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINCond-Bold.otf"; sourceTree = "<group>"; };
-		5140EB9824F5098200A33640 /* test.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = test.json; sourceTree = "<group>"; };
 		519872A424F4BD5D00ADC3F7 /* weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		519872A924F4BD5D00ADC3F7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		519872AD24F4BD5F00ADC3F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -122,7 +124,8 @@
 		519872BD24F4BE2000ADC3F7 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
-				5140EB9824F5098200A33640 /* test.json */,
+				5118800624FC99B600E8D59D /* address.json */,
+				5118800724FC99B600E8D59D /* weather.json */,
 				5140EB9624F508A000A33640 /* DINCond-Bold.otf */,
 			);
 			path = Vendors;
@@ -250,7 +253,8 @@
 			files = (
 				5140EB9724F508A000A33640 /* DINCond-Bold.otf in Resources */,
 				519872B424F4BD6000ADC3F7 /* LaunchScreen.storyboard in Resources */,
-				5140EB9924F5098200A33640 /* test.json in Resources */,
+				5118800824FC99B600E8D59D /* address.json in Resources */,
+				5118800924FC99B600E8D59D /* weather.json in Resources */,
 				519872B124F4BD5F00ADC3F7 /* Preview Assets.xcassets in Resources */,
 				519872AE24F4BD5F00ADC3F7 /* Assets.xcassets in Resources */,
 			);

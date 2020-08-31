@@ -2,7 +2,7 @@
 //  APIManager.swift
 //  WeatherSwiftUIDemo
 //
-//  Created by 北京摩学教育科技有限公司 on 2020/8/25.
+//  Created by ZCC on 2020/8/25.
 //  Copyright © 2020 zcc. All rights reserved.
 //
 
@@ -59,11 +59,14 @@ struct APIManager {
 extension APIManager {
     
     static func set(value: Any, key: APIEnum) {
-        //APIManager._cache.setValue(value, forKey: key.cacheKey)
+        APIManager._cache.setObject(value as AnyObject, forKey: key.cacheKey as AnyObject)
     }
     
     static func read(valueFor key: APIEnum) -> Any? {
-        //return APIManager._cache.value(forKey: key.cacheKey)
-        return nil
+        return APIManager._cache.object(forKey: key.cacheKey as AnyObject)
+    }
+    
+    static func delete(valueFor key: APIEnum) {
+        return APIManager._cache.removeObject(forKey: key.cacheKey as AnyObject)
     }
 }

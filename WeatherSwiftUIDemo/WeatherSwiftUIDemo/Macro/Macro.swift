@@ -2,11 +2,14 @@
 //  Macro.swift
 //  WeatherSwiftUIDemo
 //
-//  Created by 北京摩学教育科技有限公司 on 2020/8/25.
+//  Created by ZCC on 2020/8/25.
 //  Copyright © 2020 zcc. All rights reserved.
 //
 
 import SwiftUI
+
+let kDebug: Bool = false
+//let kDebug: Bool = true
 
 var kWindow: UIWindow?
 let kBasePath: String = "http://www.ccserver.top"

@@ -2,7 +2,7 @@
 //  APIEnum.swift
 //  WeatherSwiftUIDemo
 //
-//  Created by 北京摩学教育科技有限公司 on 2020/8/25.
+//  Created by ZCC on 2020/8/25.
 //  Copyright © 2020 zcc. All rights reserved.
 //
 
@@ -13,12 +13,11 @@ enum APIEnum {
     case weather(cityId: Int)
     
     var cacheKey: String {
-        return "\(self)"
-//        var bodyStr: String?
-//        if let body = self.body, let data = try? JSONSerialization.data(withJSONObject: body, options: .fragmentsAllowed) {
-//            bodyStr = String(data: data, encoding: .utf8)
-//        }
-//        return self.path + self.method + (bodyStr ?? "")
+        var bodyStr: String?
+        if let body = self.body, let data = try? JSONSerialization.data(withJSONObject: body, options: .fragmentsAllowed) {
+            bodyStr = String(data: data, encoding: .utf8)
+        }
+        return self.path + self.method + (bodyStr ?? "")
     }
 }
 
@@ -77,7 +76,6 @@ extension APIEnum {
         } else {
             userToken = (String(Date().timeIntervalSince1970).replacingOccurrences(of: ".", with: "") + ":" + UIDevice.current.name).data(using: String.Encoding.utf8)?.base64EncodedString() ?? ""
         }
-        userToken = "MTU4NzczMzcyNzUzMzEzMTp0ZXN0"
         return ["Content-Type": "application/json", "device-token": userToken]
     }
 }
