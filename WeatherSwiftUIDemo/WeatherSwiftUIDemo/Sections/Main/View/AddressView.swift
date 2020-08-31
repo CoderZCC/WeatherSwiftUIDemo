@@ -20,9 +20,13 @@ struct AddressView: View {
                 Section(header: Text("北京")) {
                     ForEach(self._vm.modelArr ?? []) { model in
                         Button(action: {
-                            self._vm.setAddress(model: model) { (addressId) in
-                                self.weatherVM.loadData()
+                            if model.isChoice {
                                 self.isShow.toggle()
+                            } else {
+                                self._vm.setAddress(model: model) { (_) in
+                                    self.weatherVM.loadData()
+                                    self.isShow.toggle()
+                                }
                             }
                         }) {
                             AddressContentView(model: model)
@@ -31,7 +35,7 @@ struct AddressView: View {
                 }.foregroundColor(Color.black)
             }
             .navigationBarTitle("设置地区")
-        }.onAppear(perform: self._vm.loadData)
+        }.background(Color.white).onAppear(perform: self._vm.loadData)
     }
 }
 

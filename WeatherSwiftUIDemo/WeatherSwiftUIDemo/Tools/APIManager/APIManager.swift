@@ -59,11 +59,14 @@ struct APIManager {
 extension APIManager {
     
     static func set(value: Any, key: APIEnum) {
-        //APIManager._cache.setValue(value, forKey: key.cacheKey)
+        APIManager._cache.setObject(value as AnyObject, forKey: key.cacheKey as AnyObject)
     }
     
     static func read(valueFor key: APIEnum) -> Any? {
-        //return APIManager._cache.value(forKey: key.cacheKey)
-        return nil
+        return APIManager._cache.object(forKey: key.cacheKey as AnyObject)
+    }
+    
+    static func delete(valueFor key: APIEnum) {
+        return APIManager._cache.removeObject(forKey: key.cacheKey as AnyObject)
     }
 }

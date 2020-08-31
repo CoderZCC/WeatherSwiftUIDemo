@@ -134,7 +134,7 @@ struct FutureView: View {
             }
             Spacer(minLength: 10.0)
             
-        }.frame(maxWidth: kScreenW - kHorizontalSapce * 2.0).background(Color.black.opacity(0.3)).cornerRadius(8.0)
+        }.background(Color.black.opacity(0.3)).cornerRadius(8.0)
     }
 }
 
