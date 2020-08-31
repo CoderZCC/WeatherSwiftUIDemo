@@ -2,7 +2,7 @@
 //  Color-ext.swift
 //  WeatherSwiftUIDemo
 //
-//  Created by 北京摩学教育科技有限公司 on 2020/8/26.
+//  Created by ZCC on 2020/8/26.
 //  Copyright © 2020 zcc. All rights reserved.
 //
 
