@@ -7,24 +7,7 @@
 //
 
 import SwiftUI
-
-//struct MainView: View {
-//    /// 是否存在地区
-//    @State private var _isShowAddress: Bool = false
-//
-//    var body: some View {
-//        VStack {
-//            if self._isShowAddress {
-////                AddressView(isShowAddress: self.$_isShowAddress)
-//                AddressView()
-//            } else {
-//                WeatherView()
-//            }
-//        }.onAppear {
-//            self._isShowAddress = (UserDefaults.standard.value(forKey: kAddressKey) == nil)
-//        }
-//    }
-//}
+import Combine
 
 struct WeatherView: View {
     
@@ -33,7 +16,6 @@ struct WeatherView: View {
     @State var isShow: Bool = false
     
     var body: some View {
-        
         ZStack {
             self.contentView.onAppear {
                 self._vm.loadData()
@@ -41,24 +23,21 @@ struct WeatherView: View {
                     self._vm.loadData()
                 }
             }
-            if self.isShow {
-//                AddressView(isShow: self.$isShow).offset(x: 0, y: self.isShow ? 0 : kScreenH).animation(.spring())
-                AddressView(isShow: self.$isShow)
-            }
         }
     }
     
     var contentView: some View {
         VStack {
             HStack(spacing: 10.0) {
+                Image("location")
                 Button(action: {
-                    print("啊啊啊啊")
-                    self.isShow = true
-                    
+                    self.isShow.toggle()
                 }) {
                     Text(self._vm.model?.now?.address ?? "").font(Font.system(size: 20.0)).fontWeight(.semibold)
+                }.sheet(isPresented: self.$isShow) {
+                    AddressView(isShow: self.$isShow)
                 }
-            }.frame(height: kNavBarHeight).offset(y: kTopSafeH)
+            }.frame(width: kScreenW - kHorizontalSapce * 2.0, height: kNavBarHeight, alignment: .leading).offset(y: kTopSafeH)
             
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading) {
@@ -135,12 +114,9 @@ struct TipsView: View {
     
     var body: some View {
         HStack(spacing: 18.0) {
-            ZStack {
-                Text("今日天气提示").fontWeight(.semibold).frame(width: 124.0, height: 30.0)
-            }.background(Color.black.opacity(0.3)).cornerRadius(15.0)
-            
+            Text("今日天气提示").fontWeight(.semibold).frame(width: 124.0, height: 30.0).background(Color.black.opacity(0.3)).cornerRadius(15.0)
             Text(self.vm.model?.now?.tips ?? "").fontWeight(.semibold)
-            }.font(Font.system(size: 16.0))
+        }.frame(maxWidth: kScreenW - kHorizontalSapce * 2.0, alignment: .leading).font(Font.system(size: 16.0))
     }
 }
 
@@ -151,11 +127,12 @@ struct FutureView: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text("预告").fontWeight(.semibold).modifier(ContentTextModifier()).padding(.top, 10.0).padding(.leading, kHorizontalSapce)
-            VStack {
-                ForEach(self.vm.model?.threeDays ?? []) {model in
-                    FutureContentView(model: model)
-                }
-            }.padding(.init(top: 0.0, leading: kHorizontalSapce, bottom: 10.0, trailing: kHorizontalSapce))
+            
+            ForEach(self.vm.model?.threeDays ?? []) {model in
+                FutureContentView(model: model)
+            }
+            Spacer(minLength: 10.0)
+            
         }.background(Color.black.opacity(0.3)).cornerRadius(8.0)
     }
 }
@@ -171,7 +148,7 @@ struct FutureContentView: View {
             Text(model.tempRange ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
             Text(model.wind ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
             Text(model.wind_level ?? "").fontWeight(.semibold).modifier(ContentTextModifier())
-        }.frame(maxWidth: kScreenW - kHorizontalSapce * 4.0, minHeight: 30.0, alignment: .leading)
+        }.padding(.init(top: 2.0, leading: kHorizontalSapce, bottom: 0.0, trailing: kHorizontalSapce))
     }
 }
 

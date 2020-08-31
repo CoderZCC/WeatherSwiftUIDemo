@@ -11,7 +11,7 @@ import SwiftUI
 struct WeatherModel: Decodable, Equatable {
     
     static func == (lhs: WeatherModel, rhs: WeatherModel) -> Bool {
-        return lhs.now?.updateTime == rhs.now?.updateTime
+        return (lhs.now?.updateTime == rhs.now?.updateTime) && (lhs.now?.address == rhs.now?.address)
     }
     
     let now: NowModel?

@@ -26,10 +26,15 @@ enum APIError: Error {
 }
 
 struct APIManager {
-        
+    
+    static let _cache: NSCache = NSCache<AnyObject, AnyObject>()
     /// 网络请求
     /// - Parameter modelT: model模型
     static func start<T: Decodable>(_ target: APIEnum, modelT: T.Type, handler: ((T?)->Void)? ) {
+        if let d = APIManager.read(valueFor: target) as? Data, let model = try? JSONDecoder().decode(BaseModel<T>.self, from: d) {
+            handler?(model.data)
+            return
+        }
         let session = URLSession.shared
         let task = session.dataTask(with: target.request) { (data, rsp, error) in
             if let d = data {
@@ -37,6 +42,7 @@ struct APIManager {
                 do {
                     let model = try JSONDecoder().decode(BaseModel<T>.self, from: d)
                     handler?(model.data)
+                    APIManager.set(value: d, key: target)
                 } catch {
                     print("数据转模型失败:\(error)")
                     handler?(nil)
@@ -47,5 +53,17 @@ struct APIManager {
             }
         }
         task.resume()
+    }
+}
+
+extension APIManager {
+    
+    static func set(value: Any, key: APIEnum) {
+        //APIManager._cache.setValue(value, forKey: key.cacheKey)
+    }
+    
+    static func read(valueFor key: APIEnum) -> Any? {
+        //return APIManager._cache.value(forKey: key.cacheKey)
+        return nil
     }
 }

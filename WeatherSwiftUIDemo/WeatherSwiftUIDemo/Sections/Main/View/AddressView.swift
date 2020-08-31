@@ -20,7 +20,7 @@ struct AddressView: View {
                     ForEach(self._vm.modelArr ?? []) { model in
                         Button(action: {
                             self._vm.setAddress(model: model) { (_) in
-                                self.isShow = false
+                                self.isShow.toggle()
                             }
                         }) {
                             AddressContentView(model: model)

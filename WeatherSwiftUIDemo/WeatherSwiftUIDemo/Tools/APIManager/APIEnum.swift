@@ -11,6 +11,15 @@ import UIKit
 enum APIEnum {
     case address
     case weather(cityId: Int)
+    
+    var cacheKey: String {
+        return "\(self)"
+//        var bodyStr: String?
+//        if let body = self.body, let data = try? JSONSerialization.data(withJSONObject: body, options: .fragmentsAllowed) {
+//            bodyStr = String(data: data, encoding: .utf8)
+//        }
+//        return self.path + self.method + (bodyStr ?? "")
+    }
 }
 
 extension APIEnum {
