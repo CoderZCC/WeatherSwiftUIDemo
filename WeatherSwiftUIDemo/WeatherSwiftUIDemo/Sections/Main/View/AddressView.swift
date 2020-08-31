@@ -13,6 +13,7 @@ struct AddressView: View {
     @Binding var isShow: Bool
     @ObservedObject var weatherVM: WeatherViewModel
     @ObservedObject private var _vm = AddressViewModel()
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         return NavigationView {
@@ -33,10 +34,9 @@ struct AddressView: View {
                             AddressContentView(model: model)
                         }
                     }
-                }.foregroundColor(Color.black)
-            }
-            .navigationBarTitle("选择地区")
-        }.background(Color.white).onAppear(perform: self._vm.loadData)
+                }
+            }.navigationBarTitle("选择地区")
+        }.foreColor(self.colorScheme, dark: Color.white, light: Color.black).onAppear(perform: self._vm.loadData)
     }
 }
 
@@ -49,9 +49,8 @@ struct SearchView: View {
         VStack {
             TextField("搜索", text: self.$_input, onCommit:  {
                 self.vm.search(self._input)
-                }).keyboardType(.default).textFieldStyle(RoundedBorderTextFieldStyle())
-            
-        }.foregroundColor(Color.black)
+            }).keyboardType(.default).textFieldStyle(RoundedBorderTextFieldStyle())
+        }
     }
 }
 
@@ -77,6 +76,6 @@ struct AddressView_Previews: PreviewProvider {
     @ObservedObject private var _vm = WeatherViewModel()
     
     static var previews: some View {
-        AddressView(isShow: AddressView_Previews().$isShow, weatherVM: AddressView_Previews()._vm)
+        AddressView(isShow: AddressView_Previews().$isShow, weatherVM: AddressView_Previews()._vm).environment(\.colorScheme, .dark)
     }
 }
