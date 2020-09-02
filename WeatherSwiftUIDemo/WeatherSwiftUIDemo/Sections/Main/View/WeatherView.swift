@@ -17,7 +17,7 @@ struct WeatherView: View {
     
     var body: some View {
         
-        self.contentView.opacity(1.0).animation(Animation.easeInOut(duration: 0.4)).onAppear {
+        self.contentView.opacity(self._vm.model != nil ? 1.0 : 0.0).animation(Animation.easeInOut(duration: 0.4)).onAppear {
             self.loadData()
         }
     }
