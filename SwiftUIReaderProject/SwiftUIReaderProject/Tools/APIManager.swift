@@ -16,8 +16,7 @@ enum APIEnum {
     var path: String {
         switch self {
         case .html(let path):
-            path.hasPrefix("http") ? path: kHtmlPath + path
-            return path
+            return path.hasPrefix("http") ? path: kHtmlPath + path
         }
     }
 }
