@@ -9,22 +9,30 @@
 /* Begin PBXBuildFile section */
 		51BF8BA5250089A400FD5C3A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BF8BA4250089A400FD5C3A /* AppDelegate.swift */; };
 		51BF8BA7250089A400FD5C3A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BF8BA6250089A400FD5C3A /* SceneDelegate.swift */; };
-		51BF8BA9250089A400FD5C3A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BF8BA8250089A400FD5C3A /* ContentView.swift */; };
 		51BF8BAB250089A500FD5C3A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51BF8BAA250089A500FD5C3A /* Assets.xcassets */; };
 		51BF8BAE250089A500FD5C3A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51BF8BAD250089A500FD5C3A /* Preview Assets.xcassets */; };
 		51BF8BB1250089A500FD5C3A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51BF8BAF250089A500FD5C3A /* LaunchScreen.storyboard */; };
 		51BF8BBA25008A5100FD5C3A /* Ji in Frameworks */ = {isa = PBXBuildFile; productRef = 51BF8BB925008A5100FD5C3A /* Ji */; };
+		51BF8BCE250094C500FD5C3A /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BF8BCD250094C500FD5C3A /* APIManager.swift */; };
+		51BF8BD02500969D00FD5C3A /* Macro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BF8BCF2500969D00FD5C3A /* Macro.swift */; };
+		51BF8BD22500971E00FD5C3A /* HotNewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BF8BD12500971E00FD5C3A /* HotNewsModel.swift */; };
+		51BF8BD42500983300FD5C3A /* HotNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BF8BD32500983300FD5C3A /* HotNewsView.swift */; };
+		51BF8BD62500986F00FD5C3A /* HotNewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BF8BD52500986F00FD5C3A /* HotNewsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		51BF8BA1250089A400FD5C3A /* HotNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HotNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51BF8BA4250089A400FD5C3A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		51BF8BA6250089A400FD5C3A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		51BF8BA8250089A400FD5C3A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		51BF8BAA250089A500FD5C3A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		51BF8BAD250089A500FD5C3A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		51BF8BB0250089A500FD5C3A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		51BF8BB2250089A500FD5C3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		51BF8BCD250094C500FD5C3A /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		51BF8BCF2500969D00FD5C3A /* Macro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Macro.swift; sourceTree = "<group>"; };
+		51BF8BD12500971E00FD5C3A /* HotNewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotNewsModel.swift; sourceTree = "<group>"; };
+		51BF8BD32500983300FD5C3A /* HotNewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotNewsView.swift; sourceTree = "<group>"; };
+		51BF8BD52500986F00FD5C3A /* HotNewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotNewsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +68,9 @@
 			children = (
 				51BF8BA4250089A400FD5C3A /* AppDelegate.swift */,
 				51BF8BA6250089A400FD5C3A /* SceneDelegate.swift */,
-				51BF8BA8250089A400FD5C3A /* ContentView.swift */,
+				51BF8BCF2500969D00FD5C3A /* Macro.swift */,
+				51BF8BD72500987800FD5C3A /* Sections */,
+				51BF8BCC250094B600FD5C3A /* Tools */,
 				51BF8BAA250089A500FD5C3A /* Assets.xcassets */,
 				51BF8BAF250089A500FD5C3A /* LaunchScreen.storyboard */,
 				51BF8BB2250089A500FD5C3A /* Info.plist */,
@@ -75,6 +85,24 @@
 				51BF8BAD250089A500FD5C3A /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		51BF8BCC250094B600FD5C3A /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				51BF8BCD250094C500FD5C3A /* APIManager.swift */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		51BF8BD72500987800FD5C3A /* Sections */ = {
+			isa = PBXGroup;
+			children = (
+				51BF8BD12500971E00FD5C3A /* HotNewsModel.swift */,
+				51BF8BD32500983300FD5C3A /* HotNewsView.swift */,
+				51BF8BD52500986F00FD5C3A /* HotNewsViewModel.swift */,
+			);
+			path = Sections;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,9 +182,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				51BF8BD62500986F00FD5C3A /* HotNewsViewModel.swift in Sources */,
+				51BF8BCE250094C500FD5C3A /* APIManager.swift in Sources */,
+				51BF8BD42500983300FD5C3A /* HotNewsView.swift in Sources */,
 				51BF8BA5250089A400FD5C3A /* AppDelegate.swift in Sources */,
 				51BF8BA7250089A400FD5C3A /* SceneDelegate.swift in Sources */,
-				51BF8BA9250089A400FD5C3A /* ContentView.swift in Sources */,
+				51BF8BD02500969D00FD5C3A /* Macro.swift in Sources */,
+				51BF8BD22500971E00FD5C3A /* HotNewsModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
