@@ -12,7 +12,9 @@ struct HotNewsModel {
     let segements: [SegementModel]?
 }
 
-struct SegementModel {
+struct SegementModel: Identifiable {
+    var id = UUID()
+    
     let title: String?
     let href: String?
     let icon: String?
@@ -21,7 +23,9 @@ struct SegementModel {
     let update: String?
 }
 
-struct ContentModel {
+struct ContentModel: Identifiable {
+    var id = UUID()
+    
     let num: String?
     let title: String?
     let href: String?

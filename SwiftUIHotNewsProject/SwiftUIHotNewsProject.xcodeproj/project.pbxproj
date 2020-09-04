@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		516245992500B59F00DA4032 /* hotNews.html in Resources */ = {isa = PBXBuildFile; fileRef = 516245982500B59F00DA4032 /* hotNews.html */; };
+		5162459E2500C7E800DA4032 /* Color-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5162459D2500C7E800DA4032 /* Color-Ext.swift */; };
+		516245A02500CC1200DA4032 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5162459F2500CC1200DA4032 /* DetailView.swift */; };
+		51AB276C2500B0E4009FE5DF /* WebImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AB276B2500B0E4009FE5DF /* WebImage.swift */; };
 		51BF8BA5250089A400FD5C3A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BF8BA4250089A400FD5C3A /* AppDelegate.swift */; };
 		51BF8BA7250089A400FD5C3A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BF8BA6250089A400FD5C3A /* SceneDelegate.swift */; };
 		51BF8BAB250089A500FD5C3A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51BF8BAA250089A500FD5C3A /* Assets.xcassets */; };
@@ -21,6 +25,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		516245982500B59F00DA4032 /* hotNews.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = hotNews.html; sourceTree = "<group>"; };
+		5162459D2500C7E800DA4032 /* Color-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color-Ext.swift"; sourceTree = "<group>"; };
+		5162459F2500CC1200DA4032 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		51AB276B2500B0E4009FE5DF /* WebImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImage.swift; sourceTree = "<group>"; };
 		51BF8BA1250089A400FD5C3A /* HotNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HotNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51BF8BA4250089A400FD5C3A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		51BF8BA6250089A400FD5C3A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,11 +77,13 @@
 				51BF8BA4250089A400FD5C3A /* AppDelegate.swift */,
 				51BF8BA6250089A400FD5C3A /* SceneDelegate.swift */,
 				51BF8BCF2500969D00FD5C3A /* Macro.swift */,
+				5162459D2500C7E800DA4032 /* Color-Ext.swift */,
 				51BF8BD72500987800FD5C3A /* Sections */,
 				51BF8BCC250094B600FD5C3A /* Tools */,
 				51BF8BAA250089A500FD5C3A /* Assets.xcassets */,
 				51BF8BAF250089A500FD5C3A /* LaunchScreen.storyboard */,
 				51BF8BB2250089A500FD5C3A /* Info.plist */,
+				516245982500B59F00DA4032 /* hotNews.html */,
 				51BF8BAC250089A500FD5C3A /* Preview Content */,
 			);
 			path = SwiftUIHotNewsProject;
@@ -91,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				51BF8BCD250094C500FD5C3A /* APIManager.swift */,
+				51AB276B2500B0E4009FE5DF /* WebImage.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -100,6 +111,7 @@
 			children = (
 				51BF8BD12500971E00FD5C3A /* HotNewsModel.swift */,
 				51BF8BD32500983300FD5C3A /* HotNewsView.swift */,
+				5162459F2500CC1200DA4032 /* DetailView.swift */,
 				51BF8BD52500986F00FD5C3A /* HotNewsViewModel.swift */,
 			);
 			path = Sections;
@@ -172,6 +184,7 @@
 				51BF8BB1250089A500FD5C3A /* LaunchScreen.storyboard in Resources */,
 				51BF8BAE250089A500FD5C3A /* Preview Assets.xcassets in Resources */,
 				51BF8BAB250089A500FD5C3A /* Assets.xcassets in Resources */,
+				516245992500B59F00DA4032 /* hotNews.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,8 +195,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5162459E2500C7E800DA4032 /* Color-Ext.swift in Sources */,
 				51BF8BD62500986F00FD5C3A /* HotNewsViewModel.swift in Sources */,
 				51BF8BCE250094C500FD5C3A /* APIManager.swift in Sources */,
+				516245A02500CC1200DA4032 /* DetailView.swift in Sources */,
+				51AB276C2500B0E4009FE5DF /* WebImage.swift in Sources */,
 				51BF8BD42500983300FD5C3A /* HotNewsView.swift in Sources */,
 				51BF8BA5250089A400FD5C3A /* AppDelegate.swift in Sources */,
 				51BF8BA7250089A400FD5C3A /* SceneDelegate.swift in Sources */,

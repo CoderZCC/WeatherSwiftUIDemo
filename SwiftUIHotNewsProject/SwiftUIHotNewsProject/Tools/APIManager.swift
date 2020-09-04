@@ -28,9 +28,15 @@ struct APIManager {
     /// - Returns: AnyPublisher
     static func start(_ target: APIEnum) -> AnyPublisher<Ji?, Never> {
         let bgQueue = DispatchQueue.global()
-        let publisher = URLSession.shared.dataTaskPublisher(for: target.url).retry(5).timeout(10.0, scheduler: bgQueue).map { (output) -> Ji? in
-            return Ji(htmlData: output.data)
-        }.replaceError(with: nil).subscribe(on: bgQueue).eraseToAnyPublisher()
-        return publisher
+        if kDebug {
+            let filePath = Bundle.main.path(forResource: "", ofType: "html") ?? ""
+            return filePath.publisher.map({ (_) -> Ji? in
+                return Ji(htmlString: try! String(contentsOfFile: filePath))
+            }).subscribe(on: bgQueue).eraseToAnyPublisher()
+        } else {
+            return URLSession.shared.dataTaskPublisher(for: target.url).timeout(60.0, scheduler: bgQueue).map { (output) -> Ji? in
+                return Ji(htmlData: output.data)
+            }.replaceError(with: nil).subscribe(on: bgQueue).eraseToAnyPublisher()
+        }
     }
 }

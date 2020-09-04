@@ -8,5 +8,8 @@
 
 import UIKit
 
+let kDebug: Bool = true
 let kHtmlPath: String = "https://tophub.today/c/news"
+let kScreenW: CGFloat = UIScreen.main.bounds.width
+let kScreenH: CGFloat = UIScreen.main.bounds.height
 
