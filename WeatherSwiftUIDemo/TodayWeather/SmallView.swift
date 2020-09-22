@@ -9,23 +9,22 @@
 import SwiftUI
 
 struct SmallView: View {
-    var model: WeatherModel?
+    var model: SubModel?
     
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .center, vertical: .top)) {
             kSkin.resizable().aspectRatio(contentMode: .fill)
             VStack(spacing: 0.0) {
-                Text(model?.address ?? "北京市").font(.system(size: 10.0)).padding(.top, 2.0).padding(.bottom, 4.0)
+                Text(model?.now?.address ?? "北京市").font(.system(size: 12.0)).padding(.top, 2.0).padding(.bottom, 4.0)
                 
                 HStack(spacing: 6.0) {
                     kThumb.resizable().frame(width: 55.0, height: 55.0)
                     VStack(alignment: .leading, spacing: 4.0) {
-                        Text(model?.description ?? "").font(.system(size: 14.0, weight: .semibold)).padding(.trailing, 26.0)
+                        Text(model?.now?.description ?? "").font(.system(size: 14.0, weight: .semibold)).padding(.trailing, 26.0)
                         
-                        Text("\(model?.temperature ?? "")°").font(.system(size: 12.0, weight: .semibold))
+                        Text("\(model?.now?.temperature ?? "")°").font(.system(size: 12.0, weight: .semibold))
                         
-                        Text("\(model?.aqiNum ?? 0)  \(model?.aqiDesc ?? "")" ).font(.system(size: 10.0, weight: .semibold)).padding(EdgeInsets(top: 1.0, leading: 6.0, bottom: 1.0, trailing: 6.0)).background(model?.bgColor).cornerRadius(6.0)
-                        
+                        Text("\(model?.now?.aqiNum ?? 0)  \(model?.now?.aqiDesc ?? "")" ).font(.system(size: 10.0, weight: .semibold)).padding(EdgeInsets(top: 1.0, leading: 6.0, bottom: 1.0, trailing: 6.0)).background(model?.now?.bgColor).cornerRadius(6.0)
                     }
                 }.padding(.bottom, 12.0)
                 
@@ -45,9 +44,9 @@ struct DayView: View {
     
     var body: some View {
         VStack(spacing: 4.0) {
-            Text(self.model?.time ?? "a").font(.system(size: 10.0, weight: .semibold))
+            Text(self.model?.time ?? "a").font(.system(size: 12.0, weight: .semibold))
             kThumb1.resizable().frame(width: 20.0, height: 20.0)
-            Text(self.model?.tempRange ?? "a").font(.system(size: 10.0, weight: .semibold))
+            Text(self.model?.tempRange ?? "a").font(.system(size: 12.0, weight: .semibold))
         }
     }
 }

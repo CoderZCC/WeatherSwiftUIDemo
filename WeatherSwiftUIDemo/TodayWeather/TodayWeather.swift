@@ -17,7 +17,12 @@ var kThumb2: Image = Image("w1")
 var kThumb3: Image = Image("w1")
 
 struct BaseModel: Decodable {
-    let data: WeatherModel?
+    let data: SubModel?
+}
+
+struct SubModel: Decodable {
+    let now: WeatherModel?
+    let threeDays: [DayModel]?
 }
 
 struct WeatherModel: Decodable {
@@ -36,8 +41,6 @@ struct WeatherModel: Decodable {
     let updateTime: String?
     let address: String?
     
-    let threeDays: [DayModel]?
-    
     var bgColor: Color {
         switch self.aqiNum ?? 0 {
         case 0:
@@ -52,7 +55,6 @@ struct WeatherModel: Decodable {
             return Color(red: 76.0 / 255.0, green: 60.0 / 255.0, blue: 134.0 / 255.0)
         }
     }
-    
 }
 
 struct DayModel: Decodable {
@@ -69,8 +71,9 @@ struct DayModel: Decodable {
 }
 
 let kDayModel = DayModel(thumbImage: "https://h5tq.moji.com/tianqi/assets/images/weather/w1.png", time: "今天", description: "多云", tempRange: "17°/26°", wind: "东北风", wind_level: "一级", aqi: 23, aqiNum: 0, aqiDesc: "优")
-let kWeatherModel = WeatherModel(skin: "https://h5tq.moji.com/tianqi/assets/images/skin/day_1.jpg", thubmImage: "https://h5tq.moji.com/tianqi/assets/images/weather/w1.png", temperature: "26", tempRange: "17°/26°", description: "多云", humidity: "湿度 31%", wind: "东风3级", tips: "冷热适宜，感觉很舒适。", aqi: 24, aqiDesc: "优", aqiNum: 0, updateTime: "今天14:00更新", address: "北京市朝阳区", threeDays: [kDayModel, kDayModel, kDayModel])
-let kDefaultModel = SimpleEntry(date: Date(), configuration: ConfigurationIntent(), model: kWeatherModel)
+let kWeatherModel = WeatherModel(skin: "https://h5tq.moji.com/tianqi/assets/images/skin/day_1.jpg", thubmImage: "https://h5tq.moji.com/tianqi/assets/images/weather/w1.png", temperature: "26", tempRange: "17°/26°", description: "多云", humidity: "湿度 31%", wind: "东风3级", tips: "冷热适宜，感觉很舒适。", aqi: 24, aqiDesc: "优", aqiNum: 0, updateTime: "今天14:00更新", address: "北京市朝阳区")
+let kSubModel = SubModel(now: kWeatherModel, threeDays: [kDayModel, kDayModel, kDayModel])
+let kDefaultModel = SimpleEntry(date: Date(), configuration: ConfigurationIntent(), model: kSubModel)
 
 struct Provider: IntentTimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
@@ -87,16 +90,16 @@ struct Provider: IntentTimelineProvider {
         request.addValue("MTU4NzczMzcyNzUzMzEzMTp0ZXN0", forHTTPHeaderField: "device-token")
         
         URLSession.shared.dataTask(with: request) { (data, rsp, error) in
-            var finalModel: WeatherModel?
+            var finalModel: SubModel?
             if let d = data, let m = try? JSONDecoder().decode(BaseModel.self, from: d) {
                 finalModel = m.data
                 
-                self._download(finalModel?.skin) { (imgData)  in
+                self._download(finalModel?.now?.skin) { (imgData)  in
                     if let imgData = imgData, let img = UIImage(data: imgData) {
                         kSkin = Image(uiImage: img)
                     }
                 }
-                self._download(finalModel?.thubmImage) { (imgData) in
+                self._download(finalModel?.now?.thubmImage) { (imgData) in
                     if let imgData = imgData, let img = UIImage(data: imgData) {
                         kThumb = Image(uiImage: img)
                     }
@@ -118,7 +121,7 @@ struct Provider: IntentTimelineProvider {
                 }
             }
             let now = Date()
-            let timeline = Timeline(entries: [SimpleEntry(date: now, configuration: configuration, model: finalModel)], policy: .after(now.addingTimeInterval(60.0 * 60.0)))
+            let timeline = Timeline(entries: [SimpleEntry(date: now, configuration: configuration, model: finalModel ?? kSubModel)], policy: .after(now.addingTimeInterval(60.0 * 60.0)))
             completion(timeline)
         }.resume()
     }
@@ -137,7 +140,7 @@ struct Provider: IntentTimelineProvider {
 struct SimpleEntry: TimelineEntry {
     let date: Date
     let configuration: ConfigurationIntent
-    let model: WeatherModel?
+    let model: SubModel?
 }
 
 struct TodayWeatherEntryView : View {
@@ -157,7 +160,7 @@ struct TodayWeatherEntryView : View {
 }
 
 struct MediumView: View {
-    var model: WeatherModel?
+    var model: SubModel?
     
     var body: some View {
         Text("dasd")
