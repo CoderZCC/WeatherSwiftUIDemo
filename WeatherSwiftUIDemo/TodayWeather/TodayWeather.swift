@@ -10,42 +10,166 @@ import WidgetKit
 import SwiftUI
 import Intents
 
+var kSkin: Image = Image("day_1")
+var kThumb: Image = Image("w1")
+var kThumb1: Image = Image("w1")
+var kThumb2: Image = Image("w1")
+var kThumb3: Image = Image("w1")
+
+struct BaseModel: Decodable {
+    let data: WeatherModel?
+}
+
+struct WeatherModel: Decodable {
+    let skin: String?
+    let thubmImage: String?
+    
+    let temperature: String?
+    let tempRange: String?
+    let description: String?
+    let humidity: String?
+    let wind: String?
+    let tips: String?
+    let aqi: Int?
+    let aqiDesc: String?
+    let aqiNum: Int?
+    let updateTime: String?
+    let address: String?
+    
+    let threeDays: [DayModel]?
+    
+    var bgColor: Color {
+        switch self.aqiNum ?? 0 {
+        case 0:
+            return Color(red: 126.0 / 255.0, green: 186.0 / 255.0, blue: 25.0 / 255.0)
+        case 1:
+            return Color(red: 205.0 / 255.0, green: 161.0 / 255.0, blue: 15.0 / 255.0)
+        case 2:
+            return Color(red: 237.0 / 255.0, green: 134, blue: 10.0 / 255.0)
+        case 3:
+            return Color(red: 216.0 / 255.0, green: 32, blue: 21.0 / 255.0)
+        default:
+            return Color(red: 76.0 / 255.0, green: 60.0 / 255.0, blue: 134.0 / 255.0)
+        }
+    }
+    
+}
+
+struct DayModel: Decodable {
+    let thumbImage: String?
+    
+    let time: String?
+    let description: String?
+    let tempRange: String?
+    let wind: String?
+    let wind_level: String?
+    let aqi: Int?
+    let aqiNum: Int?
+    let aqiDesc: String?
+}
+
+let kDayModel = DayModel(thumbImage: "https://h5tq.moji.com/tianqi/assets/images/weather/w1.png", time: "今天", description: "多云", tempRange: "17°/26°", wind: "东北风", wind_level: "一级", aqi: 23, aqiNum: 0, aqiDesc: "优")
+let kWeatherModel = WeatherModel(skin: "https://h5tq.moji.com/tianqi/assets/images/skin/day_1.jpg", thubmImage: "https://h5tq.moji.com/tianqi/assets/images/weather/w1.png", temperature: "26", tempRange: "17°/26°", description: "多云", humidity: "湿度 31%", wind: "东风3级", tips: "冷热适宜，感觉很舒适。", aqi: 24, aqiDesc: "优", aqiNum: 0, updateTime: "今天14:00更新", address: "北京市朝阳区", threeDays: [kDayModel, kDayModel, kDayModel])
+let kDefaultModel = SimpleEntry(date: Date(), configuration: ConfigurationIntent(), model: kWeatherModel)
+
 struct Provider: IntentTimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), configuration: ConfigurationIntent())
+        kDefaultModel
     }
 
     func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), configuration: configuration)
-        completion(entry)
+        completion(kDefaultModel)
     }
 
     func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        var entries: [SimpleEntry] = []
-
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, configuration: configuration)
-            entries.append(entry)
+        let apiPath: String = "http://www.ccserver.top/api/v1/weather?addressId=276"
+        var request = URLRequest(url: URL(string: apiPath)!, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 60.0)
+        request.addValue("MTU4NzczMzcyNzUzMzEzMTp0ZXN0", forHTTPHeaderField: "device-token")
+        
+        URLSession.shared.dataTask(with: request) { (data, rsp, error) in
+            var finalModel: WeatherModel?
+            if let d = data, let m = try? JSONDecoder().decode(BaseModel.self, from: d) {
+                finalModel = m.data
+                
+                self._download(finalModel?.skin) { (imgData)  in
+                    if let imgData = imgData, let img = UIImage(data: imgData) {
+                        kSkin = Image(uiImage: img)
+                    }
+                }
+                self._download(finalModel?.thubmImage) { (imgData) in
+                    if let imgData = imgData, let img = UIImage(data: imgData) {
+                        kThumb = Image(uiImage: img)
+                    }
+                }
+                self._download(finalModel?.threeDays?.first?.thumbImage) { (imgData) in
+                    if let imgData = imgData, let img = UIImage(data: imgData) {
+                        kThumb1 = Image(uiImage: img)
+                    }
+                }
+                self._download(finalModel?.threeDays?[1].thumbImage) { (imgData) in
+                    if let imgData = imgData, let img = UIImage(data: imgData) {
+                        kThumb2 = Image(uiImage: img)
+                    }
+                }
+                self._download(finalModel?.threeDays?.last?.thumbImage) { (imgData) in
+                    if let imgData = imgData, let img = UIImage(data: imgData) {
+                        kThumb3 = Image(uiImage: img)
+                    }
+                }
+            }
+            let now = Date()
+            let timeline = Timeline(entries: [SimpleEntry(date: now, configuration: configuration, model: finalModel)], policy: .after(now.addingTimeInterval(60.0 * 60.0)))
+            completion(timeline)
+        }.resume()
+    }
+    
+    func _download(_ path: String?, block: ((Data?)->Void)?) {
+        if let p = path, let url = URL(string: p) {
+            URLSession.shared.dataTask(with: url) { (data, rsp, error) in
+                block?(data)
+            }.resume()
+        } else {
+            block?(nil)
         }
-
-        let timeline = Timeline(entries: entries, policy: .atEnd)
-        completion(timeline)
     }
 }
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
     let configuration: ConfigurationIntent
+    let model: WeatherModel?
 }
 
 struct TodayWeatherEntryView : View {
     var entry: Provider.Entry
-
+    @Environment(\.widgetFamily) var family: WidgetFamily
+    
     var body: some View {
-        Text(entry.date, style: .time)
+        switch family {
+        case .systemSmall:
+            SmallView(model: entry.model)
+        case .systemMedium:
+            MediumView(model: entry.model)
+        default:
+            SmallView(model: entry.model)
+        }
+    }
+}
+
+struct MediumView: View {
+    var model: WeatherModel?
+    
+    var body: some View {
+        Text("dasd")
+    }
+    
+}
+
+
+// MARK: -文字内容样式
+struct ContentTextModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content.shadow(color: .init(UIColor.black.withAlphaComponent(0.8)), radius: 10, x: 0.0, y: 0.0)
     }
 }
 
@@ -58,13 +182,13 @@ struct TodayWeather: Widget {
             TodayWeatherEntryView(entry: entry)
         }
         .configurationDisplayName("今日天气")
-        .description("This is an example widget.")
+        .description("显示您所在地区的天气")
     }
 }
 
 struct TodayWeather_Previews: PreviewProvider {
     static var previews: some View {
-        TodayWeatherEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent()))
-            .previewContext(WidgetPreviewContext(family: .systemSmall))
+        TodayWeatherEntryView(entry: kDefaultModel)
+            .previewContext(WidgetPreviewContext(family: .systemMedium))
     }
 }

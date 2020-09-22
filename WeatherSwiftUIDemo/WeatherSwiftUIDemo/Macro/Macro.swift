@@ -29,10 +29,3 @@ let kHorizontalSapce: CGFloat = 16.0
 let kTokenKey: String = "kTokenKey"
 /// 地区key
 let kAddressKey: String = "kAddressKey"
-
-
-struct Macro_Previews: PreviewProvider {
-    static var previews: some View {
-        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
-    }
-}

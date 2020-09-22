@@ -34,6 +34,7 @@
 		51A6ACD82519A2310094BDFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51A6ACD72519A2310094BDFB /* Assets.xcassets */; };
 		51A6ACDC2519A2310094BDFB /* SpecialDayExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 51A6ACD12519A22F0094BDFB /* SpecialDayExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		51A6ACF02519AC170094BDFB /* DINCond-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 51A6ACEF2519AC170094BDFB /* DINCond-Bold.otf */; };
+		51A6AD392519FA820094BDFB /* SmallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A6AD312519FA410094BDFB /* SmallView.swift */; };
 		51E4699524F5F05F009A3D85 /* Color-ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E4699424F5F05F009A3D85 /* Color-ext.swift */; };
 		51EDF3C624F798740019C101 /* AddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EDF3C524F798740019C101 /* AddressView.swift */; };
 		51EDF3C824F799F30019C101 /* AddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EDF3C724F799F30019C101 /* AddressViewModel.swift */; };
@@ -103,6 +104,7 @@
 		51A6ACD92519A2310094BDFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		51A6ACDD2519A2310094BDFB /* SpecialDayExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SpecialDayExtension.entitlements; sourceTree = "<group>"; };
 		51A6ACEF2519AC170094BDFB /* DINCond-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DINCond-Bold.otf"; sourceTree = "<group>"; };
+		51A6AD312519FA410094BDFB /* SmallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallView.swift; sourceTree = "<group>"; };
 		51C8885824F7572000021D5E /* weather.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = weather.entitlements; sourceTree = "<group>"; };
 		51E4699424F5F05F009A3D85 /* Color-ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color-ext.swift"; sourceTree = "<group>"; };
 		51EDF3C524F798740019C101 /* AddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressView.swift; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				51A6ACB925199E0E0094BDFB /* TodayWeather.swift */,
+				51A6AD312519FA410094BDFB /* SmallView.swift */,
 				51A6ACBB25199E0E0094BDFB /* TodayWeather.intentdefinition */,
 				51A6ACBC25199E100094BDFB /* Assets.xcassets */,
 				51A6ACBE25199E100094BDFB /* Info.plist */,
@@ -465,6 +468,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				51A6ACBA25199E0E0094BDFB /* TodayWeather.swift in Sources */,
+				51A6AD392519FA820094BDFB /* SmallView.swift in Sources */,
 				51A6ACBF25199E100094BDFB /* TodayWeather.intentdefinition in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
