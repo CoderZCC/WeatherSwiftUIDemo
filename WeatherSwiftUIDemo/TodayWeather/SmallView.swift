@@ -12,10 +12,10 @@ struct SmallView: View {
     var model: SubModel?
     
     var body: some View {
-        ZStack(alignment: Alignment(horizontal: .center, vertical: .top)) {
+        ZStack(alignment: Alignment(horizontal: .center, vertical: .center)) {
             kSkin.resizable().aspectRatio(contentMode: .fill)
             VStack(spacing: 0.0) {
-                Text(model?.now?.address ?? "北京市").font(.system(size: 12.0)).padding(.top, 2.0).padding(.bottom, 4.0)
+                Text(model?.now?.address ?? "北京市").font(.system(size: 12.0)).padding(.bottom, 4.0)
                 
                 HStack(spacing: 6.0) {
                     kThumb.resizable().frame(width: 55.0, height: 55.0)
