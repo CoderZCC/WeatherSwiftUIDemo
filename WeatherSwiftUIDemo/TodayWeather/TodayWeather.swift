@@ -41,6 +41,10 @@ struct WeatherModel: Decodable {
     let updateTime: String?
     let address: String?
     
+    var weekday: String {
+        return "今天 星期三"
+    }
+    
     var bgColor: Color {
         switch self.aqiNum ?? 0 {
         case 0:
@@ -163,9 +167,48 @@ struct MediumView: View {
     var model: SubModel?
     
     var body: some View {
-        Text("dasd")
+        ZStack(alignment: Alignment(horizontal: .center, vertical: .center)) {
+            kSkin.resizable().aspectRatio(contentMode: .fill)
+            Text(model?.now?.address ?? "北京市").font(.system(size: 12.0, weight: .semibold)).position(x: 50.0, y: 50.0)
+            
+            VStack {
+                
+                HStack {
+                    kThumb.resizable().frame(width: 65.0, height: 65.0)
+                    
+                    VStack(alignment: .leading, spacing: 4.0) {
+                        Text(model?.now?.weekday ?? "").font(.system(size: 14.0, weight: .semibold))
+                        
+                        Text(model?.now?.description ?? "").font(.system(size: 22.0, weight: .semibold))
+                        
+                        Text("\(model?.now?.temperature ?? "")°").font(.system(size: 18.0, weight: .semibold))
+                        
+                        Text("\(model?.now?.aqiNum ?? 0)  空气质量\(model?.now?.aqiDesc ?? "")" ).font(.system(size: 14.0, weight: .semibold)).padding(EdgeInsets(top: 2.0, leading: 6.0, bottom: 2.0, trailing: 6.0)).background(model?.now?.bgColor).cornerRadius(6.0)
+                    }
+                    Spacer().frame(width: 30.0)
+                    VStack {
+                        DayMediumView(model: model?.threeDays?.first)
+                        DayMediumView(model: model?.threeDays?[1])
+                        DayMediumView(model: model?.threeDays?.last)
+                    }
+                }
+
+            }
+            
+        }.foregroundColor(.white)
     }
+}
+
+struct DayMediumView: View {
+    var model: DayModel?
     
+    var body: some View {
+        HStack(spacing: 4.0) {
+            Text(self.model?.time ?? "a").font(.system(size: 14.0, weight: .semibold))
+            kThumb1.resizable().frame(width: 26.0, height: 26.0)
+            Text(self.model?.tempRange ?? "a").font(.system(size: 14.0, weight: .semibold))
+        }
+    }
 }
 
 
