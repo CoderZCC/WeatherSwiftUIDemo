@@ -24,7 +24,8 @@ struct Provider: TimelineProvider {
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         /// 随机数
-        let timeline = Timeline(entries: [SimpleEntry(date: Date(), imageIndex: kRandomInt)], policy: .atEnd)
+        let now = Date()
+        let timeline = Timeline(entries: [SimpleEntry(date: now, imageIndex: kRandomInt)], policy: .after(now.addingTimeInterval(60.0 * 60.0)))
         
         completion(timeline)
     }

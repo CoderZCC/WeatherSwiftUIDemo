@@ -169,7 +169,7 @@ struct MediumView: View {
 // MARK: -文字内容样式
 struct ContentTextModifier: ViewModifier {
     func body(content: Content) -> some View {
-        content.shadow(color: .init(UIColor.black.withAlphaComponent(0.8)), radius: 10, x: 0.0, y: 0.0)
+        content.shadow(color: .init(UIColor.black.withAlphaComponent(0.5)), radius: 10, x: 0.0, y: 0.0)
     }
 }
 
