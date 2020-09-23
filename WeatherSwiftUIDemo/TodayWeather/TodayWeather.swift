@@ -27,10 +27,9 @@ struct SubModel: Decodable {
 
 struct WeatherModel: Decodable {
     let skin: String?
-    let thubmImage: String?
-    
     let temperature: String?
     let tempRange: String?
+    let thubmImage: String?
     let description: String?
     let humidity: String?
     let wind: String?
@@ -38,6 +37,10 @@ struct WeatherModel: Decodable {
     let aqi: Int?
     let aqiDesc: String?
     let aqiNum: Int?
+    
+    let warn: String?
+    let warnDesc: String?
+    let warnNum: Int?
     let updateTime: String?
     let address: String?
     
@@ -75,7 +78,8 @@ struct DayModel: Decodable {
 }
 
 let kDayModel = DayModel(thumbImage: "https://h5tq.moji.com/tianqi/assets/images/weather/w1.png", time: "今天", description: "多云", tempRange: "17°/26°", wind: "东北风", wind_level: "一级", aqi: 23, aqiNum: 0, aqiDesc: "优")
-let kWeatherModel = WeatherModel(skin: "https://h5tq.moji.com/tianqi/assets/images/skin/day_1.jpg", thubmImage: "https://h5tq.moji.com/tianqi/assets/images/weather/w1.png", temperature: "26", tempRange: "17°/26°", description: "多云", humidity: "湿度 31%", wind: "东风3级", tips: "冷热适宜，感觉很舒适。", aqi: 24, aqiDesc: "优", aqiNum: 0, updateTime: "今天14:00更新", address: "北京市朝阳区")
+
+let kWeatherModel = WeatherModel(skin: "https://h5tq.moji.com/tianqi/assets/images/skin/day_1.jpg", temperature: "26", tempRange: "17°/26°", thubmImage: "https://h5tq.moji.com/tianqi/assets/images/weather/w1.png", description: "多云", humidity: "湿度 31%", wind: "东风3级", tips: "冷热适宜，感觉很舒适。", aqi: 24, aqiDesc: "优", aqiNum: 0, warn: nil, warnDesc: nil, warnNum: nil, updateTime: "今天14:00更新", address: "北京市朝阳区")
 let kSubModel = SubModel(now: kWeatherModel, threeDays: [kDayModel, kDayModel, kDayModel])
 let kDefaultModel = SimpleEntry(date: Date(), configuration: ConfigurationIntent(), model: kSubModel)
 
@@ -170,20 +174,23 @@ struct MediumView: View {
         ZStack(alignment: Alignment(horizontal: .center, vertical: .center)) {
             kSkin.resizable().aspectRatio(contentMode: .fill)
             VStack {
-                HStack(spacing: 0.0) {
+                HStack(alignment: .center, spacing: 16.0) {
                     
-                    SmallContentView(now: model?.now).border(Color.black).padding(.leading, 20.0)
+                    SmallContentView(now: model?.now)
                     
-                    
-                    Spacer()
-
+                    VStack(spacing: 10.0) {
+                        Text("\(model?.now?.aqi ?? 0) \(model?.now?.aqiDesc ?? "")" ).font(.system(size: 14.0, weight: .semibold)).padding(EdgeInsets(top: 2.0, leading: 6.0, bottom: 2.0, trailing: 6.0)).background(model?.now?.bgColor).cornerRadius(6.0)
+                        
+                        Text(model?.now?.humidity ?? "").font(.system(size: 14.0, weight: .semibold))
+                        
+                        Text(model?.now?.wind ?? "").font(.system(size: 14.0, weight: .semibold))
+                    }
                     VStack {
                         DayMediumView(model: model?.threeDays?.first, image: kThumb1)
                         DayMediumView(model: model?.threeDays?[1], image: kThumb2)
                         DayMediumView(model: model?.threeDays?.last, image: kThumb3)
-                    }.padding(.trailing, 20.0).border(Color.black)
-                    
-                }.border(Color.black)
+                    }
+                }
             }
             
         }.foregroundColor(.white)
