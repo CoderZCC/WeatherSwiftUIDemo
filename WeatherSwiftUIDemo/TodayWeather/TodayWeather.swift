@@ -12,9 +12,9 @@ import Intents
 
 var kSkin: Image = Image("day_1")
 var kThumb: Image = Image("w1")
-var kThumb1: Image = Image("w1")
-var kThumb2: Image = Image("w1")
-var kThumb3: Image = Image("w1")
+var kThumb1: Image = kThumb
+var kThumb2: Image = kThumb
+var kThumb3: Image = kThumb
 
 struct BaseModel: Decodable {
     let data: SubModel?
@@ -93,7 +93,8 @@ struct Provider: IntentTimelineProvider {
     }
     
     func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        let apiPath: String = "http://www.ccserver.top/api/v1/weather?addressId=276"
+        let addressId = 276
+        let apiPath: String = "http://www.ccserver.top/api/v1/weather?addressId=\(addressId)"
         var request = URLRequest(url: URL(string: apiPath)!, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 60.0)
         request.addValue("MTU4NzczMzcyNzUzMzEzMTp0ZXN0", forHTTPHeaderField: "device-token")
         
@@ -160,7 +161,7 @@ struct TodayWeatherEntryView : View {
         case .systemSmall:
             SmallView(model: entry.model)
         case .systemMedium:
-            MediumView(model: entry.model)
+            MediumView(model: entry.model).widgetURL(URL(string: "https://www.baidu.com"))
         default:
             SmallView(model: entry.model)
         }

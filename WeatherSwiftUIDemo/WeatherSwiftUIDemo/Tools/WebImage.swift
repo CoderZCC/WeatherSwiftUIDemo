@@ -114,7 +114,7 @@ class _ImageLoader: ObservableObject {
                     self.image = img
                 }
             } else {
-                print("error:\(error?.localizedDescription ?? "")")
+                //print("error:\(error?.localizedDescription ?? "")")
             }
             self._isLoading = false
         }

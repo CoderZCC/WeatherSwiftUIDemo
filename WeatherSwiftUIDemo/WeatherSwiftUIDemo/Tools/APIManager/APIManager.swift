@@ -38,17 +38,17 @@ struct APIManager {
         let session = URLSession.shared
         let task = session.dataTask(with: target.request) { (data, rsp, error) in
             if let d = data {
-                print(String(data: d, encoding: .utf8) ?? "")
+                //print(String(data: d, encoding: .utf8) ?? "")
                 do {
                     let model = try JSONDecoder().decode(BaseModel<T>.self, from: d)
                     handler?(model.data)
                     APIManager.set(value: d, key: target)
                 } catch {
-                    print("数据转模型失败:\(error)")
+                    //print("数据转模型失败:\(error)")
                     handler?(nil)
                 }
             } else {
-                print("error:\(error?.localizedDescription ?? "")")
+                //print("error:\(error?.localizedDescription ?? "")")
                 handler?(nil)
             }
         }
