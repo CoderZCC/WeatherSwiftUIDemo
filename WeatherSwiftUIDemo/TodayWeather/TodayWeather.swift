@@ -173,7 +173,6 @@ struct TodayWeatherEntryView : View {
     var body: some View {
         switch family {
         case .systemSmall:
-//            Text(entry.configuration.address?.name ?? "zzz").foregroundColor(.blue)
             SmallView(model: entry.model)
         case .systemMedium:
             MediumView(model: entry.model).widgetURL(URL(string: "https://www.baidu.com"))
