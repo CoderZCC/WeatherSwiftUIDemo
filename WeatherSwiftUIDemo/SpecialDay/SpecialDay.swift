@@ -25,7 +25,7 @@ struct Provider: TimelineProvider {
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         /// 随机数
         let now = Date()
-        let timeline = Timeline(entries: [SimpleEntry(date: now, imageIndex: kRandomInt)], policy: .after(now.addingTimeInterval(60.0 * 60.0)))
+        let timeline = Timeline(entries: [SimpleEntry(date: now, imageIndex: kRandomInt)], policy: .after(now.addingTimeInterval(60.0 * 30.0)))
         
         completion(timeline)
     }
@@ -88,6 +88,7 @@ struct SpecialDay: Widget {
         }
         .configurationDisplayName("纪念日")
         .description("记录在一起的日子")
+        .supportedFamilies([.systemSmall])
     }
 }
 

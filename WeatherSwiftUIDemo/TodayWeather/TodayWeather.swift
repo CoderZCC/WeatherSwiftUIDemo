@@ -87,7 +87,7 @@ struct Provider: IntentTimelineProvider {
     func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
         completion(kDefaultModel)
     }
-
+    
     func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         let apiPath: String = "http://www.ccserver.top/api/v1/weather?addressId=276"
         var request = URLRequest(url: URL(string: apiPath)!, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 60.0)
@@ -125,7 +125,7 @@ struct Provider: IntentTimelineProvider {
                 }
             }
             let now = Date()
-            let timeline = Timeline(entries: [SimpleEntry(date: now, configuration: configuration, model: finalModel ?? kSubModel)], policy: .after(now.addingTimeInterval(60.0 * 60.0)))
+            let timeline = Timeline(entries: [SimpleEntry(date: now, configuration: configuration, model: finalModel ?? kSubModel)], policy: .after(now.addingTimeInterval(60.0 * 30.0)))
             completion(timeline)
         }.resume()
     }
@@ -170,11 +170,9 @@ struct MediumView: View {
         ZStack(alignment: Alignment(horizontal: .center, vertical: .center)) {
             kSkin.resizable().aspectRatio(contentMode: .fill)
             Text(model?.now?.address ?? "北京市").font(.system(size: 12.0, weight: .semibold)).position(x: 50.0, y: 50.0)
-            
             VStack {
-                
-                HStack {
-                    kThumb.resizable().frame(width: 65.0, height: 65.0)
+                HStack(spacing: 14.0) {
+                    kThumb.resizable().frame(width: 65.0, height: 65.0).border(Color.black)
                     
                     VStack(alignment: .leading, spacing: 4.0) {
                         Text(model?.now?.weekday ?? "").font(.system(size: 14.0, weight: .semibold))
@@ -183,16 +181,14 @@ struct MediumView: View {
                         
                         Text("\(model?.now?.temperature ?? "")°").font(.system(size: 18.0, weight: .semibold))
                         
-                        Text("\(model?.now?.aqiNum ?? 0)  空气质量\(model?.now?.aqiDesc ?? "")" ).font(.system(size: 14.0, weight: .semibold)).padding(EdgeInsets(top: 2.0, leading: 6.0, bottom: 2.0, trailing: 6.0)).background(model?.now?.bgColor).cornerRadius(6.0)
-                    }
-                    Spacer().frame(width: 30.0)
+                        Text("\(model?.now?.aqi ?? 0)  空气质量\(model?.now?.aqiDesc ?? "")" ).font(.system(size: 14.0, weight: .semibold)).padding(EdgeInsets(top: 2.0, leading: 6.0, bottom: 2.0, trailing: 6.0)).background(model?.now?.bgColor).cornerRadius(6.0)
+                    }.border(Color.black)
                     VStack {
-                        DayMediumView(model: model?.threeDays?.first)
-                        DayMediumView(model: model?.threeDays?[1])
-                        DayMediumView(model: model?.threeDays?.last)
-                    }
-                }
-
+                        DayMediumView(model: model?.threeDays?.first, image: kThumb1)
+                        DayMediumView(model: model?.threeDays?[1], image: kThumb2)
+                        DayMediumView(model: model?.threeDays?.last, image: kThumb3)
+                    }.padding(.trailing, 0.0).border(Color.black)
+                }.border(Color.black)
             }
             
         }.foregroundColor(.white)
@@ -201,11 +197,12 @@ struct MediumView: View {
 
 struct DayMediumView: View {
     var model: DayModel?
+    var image: Image
     
     var body: some View {
         HStack(spacing: 4.0) {
             Text(self.model?.time ?? "a").font(.system(size: 14.0, weight: .semibold))
-            kThumb1.resizable().frame(width: 26.0, height: 26.0)
+            image.resizable().frame(width: 26.0, height: 26.0)
             Text(self.model?.tempRange ?? "a").font(.system(size: 14.0, weight: .semibold))
         }
     }
@@ -235,6 +232,6 @@ struct TodayWeather: Widget {
 struct TodayWeather_Previews: PreviewProvider {
     static var previews: some View {
         TodayWeatherEntryView(entry: kDefaultModel)
-            .previewContext(WidgetPreviewContext(family: .systemMedium))
+            .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }

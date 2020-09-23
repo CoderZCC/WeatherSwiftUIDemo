@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import WidgetKit
 
 class WeatherViewModel: ObservableObject {
     
@@ -34,6 +35,9 @@ class WeatherViewModel: ObservableObject {
                     DispatchQueue.main.async {
                         self?.model = model
                     }
+                }
+                if #available(iOS 14.0, *) {
+                    WidgetCenter.shared.reloadAllTimelines()
                 }
             }
         }
