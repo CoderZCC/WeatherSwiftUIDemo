@@ -228,6 +228,7 @@ struct TodayWeather: Widget {
         }
         .configurationDisplayName("今日天气")
         .description("显示您所在地区的天气")
+        .supportedFamilies([.systemSmall, .systemMedium])
     }
 }
 
