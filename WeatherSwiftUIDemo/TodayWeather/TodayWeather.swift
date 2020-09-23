@@ -169,25 +169,20 @@ struct MediumView: View {
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .center, vertical: .center)) {
             kSkin.resizable().aspectRatio(contentMode: .fill)
-            Text(model?.now?.address ?? "北京市").font(.system(size: 12.0, weight: .semibold)).position(x: 50.0, y: 50.0)
             VStack {
-                HStack(spacing: 14.0) {
-                    kThumb.resizable().frame(width: 65.0, height: 65.0).border(Color.black)
+                HStack(spacing: 0.0) {
                     
-                    VStack(alignment: .leading, spacing: 4.0) {
-                        Text(model?.now?.weekday ?? "").font(.system(size: 14.0, weight: .semibold))
-                        
-                        Text(model?.now?.description ?? "").font(.system(size: 22.0, weight: .semibold))
-                        
-                        Text("\(model?.now?.temperature ?? "")°").font(.system(size: 18.0, weight: .semibold))
-                        
-                        Text("\(model?.now?.aqi ?? 0)  空气质量\(model?.now?.aqiDesc ?? "")" ).font(.system(size: 14.0, weight: .semibold)).padding(EdgeInsets(top: 2.0, leading: 6.0, bottom: 2.0, trailing: 6.0)).background(model?.now?.bgColor).cornerRadius(6.0)
-                    }.border(Color.black)
+                    SmallContentView(now: model?.now).border(Color.black).padding(.leading, 20.0)
+                    
+                    
+                    Spacer()
+
                     VStack {
                         DayMediumView(model: model?.threeDays?.first, image: kThumb1)
                         DayMediumView(model: model?.threeDays?[1], image: kThumb2)
                         DayMediumView(model: model?.threeDays?.last, image: kThumb3)
-                    }.padding(.trailing, 0.0).border(Color.black)
+                    }.padding(.trailing, 20.0).border(Color.black)
+                    
                 }.border(Color.black)
             }
             
@@ -203,7 +198,7 @@ struct DayMediumView: View {
         HStack(spacing: 4.0) {
             Text(self.model?.time ?? "a").font(.system(size: 14.0, weight: .semibold))
             image.resizable().frame(width: 26.0, height: 26.0)
-            Text(self.model?.tempRange ?? "a").font(.system(size: 14.0, weight: .semibold))
+            Text(self.model?.tempRange ?? "a").font(.custom("DINCond-Bold", size: 14.0))
         }
     }
 }
@@ -232,6 +227,6 @@ struct TodayWeather: Widget {
 struct TodayWeather_Previews: PreviewProvider {
     static var previews: some View {
         TodayWeatherEntryView(entry: kDefaultModel)
-            .previewContext(WidgetPreviewContext(family: .systemSmall))
+            .previewContext(WidgetPreviewContext(family: .systemMedium))
     }
 }

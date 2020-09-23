@@ -14,17 +14,25 @@ struct SmallView: View {
     var body: some View {
         ZStack {
             kSkin.resizable().aspectRatio(contentMode: .fill)
-            VStack(spacing: 2.0) {
-                Text(model?.now?.address ?? "北京市").font(.system(size: 12.0)).foregroundColor(Color.white.opacity(0.6))
-                
-                Text("\(model?.now?.temperature ?? "")°C").font(.custom("DINCond-Bold", size: 55.0)).foregroundColor(.white).modifier(ContentTextModifier())
-                
-                kThumb.resizable().frame(width: 22.0, height: 22.0)
-                
-                Text(model?.now?.description ?? "").font(.system(size: 20.0, weight: .semibold)).foregroundColor(.white).modifier(ContentTextModifier())
-                
-                Text(model?.now?.updateTime ?? "").font(.system(size: 10.0, weight: .semibold)).foregroundColor(Color.white.opacity(0.6))
-            }
+            SmallContentView(now: model?.now)
+        }
+    }
+}
+
+struct SmallContentView: View {
+    var now: WeatherModel?
+    
+    var body: some View {
+        VStack(spacing: 2.0) {
+            Text(now?.address ?? "北京市").font(.system(size: 12.0)).foregroundColor(Color.white.opacity(0.6))
+            
+            Text("\(now?.temperature ?? "")°C").font(.custom("DINCond-Bold", size: 55.0)).foregroundColor(.white).modifier(ContentTextModifier())
+            
+            kThumb.resizable().frame(width: 22.0, height: 22.0)
+            
+            Text(now?.description ?? "").font(.system(size: 20.0, weight: .semibold)).foregroundColor(.white).modifier(ContentTextModifier())
+            
+            Text(now?.updateTime ?? "").font(.system(size: 10.0, weight: .semibold)).foregroundColor(Color.white.opacity(0.6))
         }
     }
 }
