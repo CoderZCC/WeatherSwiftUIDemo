@@ -93,8 +93,22 @@ struct Provider: IntentTimelineProvider {
     }
     
     func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        let addressId = 276
-        let apiPath: String = "http://www.ccserver.top/api/v1/weather?addressId=\(addressId)"
+        var addressId: Int!
+        // 匹配用户输入
+        let input = configuration.address?.name ?? "北京市"
+        let filePath = Bundle.main.path(forResource: "address", ofType: "json")!
+        let d = try! Data(contentsOf: URL(fileURLWithPath: filePath))
+        let dic = try? JSONSerialization.jsonObject(with: d, options: .allowFragments) as? [String: Any]
+        let datas = dic?["data"] as? Array<[String: Any]>
+        for dic in datas ?? [] {
+            let name = dic["name"] as? String ?? ""
+            let id = dic["id"] as? Int ?? 276
+            if input.contains(name) || name.contains(input) {
+                addressId = id
+                break
+            }
+        }
+        let apiPath: String = "http://www.ccserver.top/api/v1/weather?addressId=\(addressId ?? 276)"
         var request = URLRequest(url: URL(string: apiPath)!, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 60.0)
         request.addValue("MTU4NzczMzcyNzUzMzEzMTp0ZXN0", forHTTPHeaderField: "device-token")
         
@@ -159,6 +173,7 @@ struct TodayWeatherEntryView : View {
     var body: some View {
         switch family {
         case .systemSmall:
+//            Text(entry.configuration.address?.name ?? "zzz").foregroundColor(.blue)
             SmallView(model: entry.model)
         case .systemMedium:
             MediumView(model: entry.model).widgetURL(URL(string: "https://www.baidu.com"))
