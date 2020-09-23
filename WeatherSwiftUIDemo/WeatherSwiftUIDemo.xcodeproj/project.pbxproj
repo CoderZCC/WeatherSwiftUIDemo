@@ -22,8 +22,6 @@
 		519872CB24F4DB9400ADC3F7 /* WebImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519872CA24F4DB9400ADC3F7 /* WebImage.swift */; };
 		519872CF24F4E3D200ADC3F7 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519872CE24F4E3D200ADC3F7 /* WeatherViewModel.swift */; };
 		519B1730251B0F4800284EF6 /* address.json in Resources */ = {isa = PBXBuildFile; fileRef = 5118800624FC99B600E8D59D /* address.json */; };
-		519B1767251B200200284EF6 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519B1766251B200200284EF6 /* IntentHandler.swift */; };
-		519B176B251B200200284EF6 /* AddressIntent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 519B1764251B200200284EF6 /* AddressIntent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		51A6ACB525199E0E0094BDFB /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51A6ACB425199E0E0094BDFB /* WidgetKit.framework */; platformFilter = ios; };
 		51A6ACB725199E0E0094BDFB /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51A6ACB625199E0E0094BDFB /* SwiftUI.framework */; };
 		51A6ACBA25199E0E0094BDFB /* TodayWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A6ACB925199E0E0094BDFB /* TodayWeather.swift */; };
@@ -44,17 +42,9 @@
 		51EDF3C624F798740019C101 /* AddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EDF3C524F798740019C101 /* AddressView.swift */; };
 		51EDF3C824F799F30019C101 /* AddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EDF3C724F799F30019C101 /* AddressViewModel.swift */; };
 		51EDF3CA24F79A440019C101 /* AddressModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EDF3C924F79A440019C101 /* AddressModel.swift */; };
-		51F4A9C0251B214E0006742E /* SelectCharacterIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F4A9BF251B214E0006742E /* SelectCharacterIntent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		519B1769251B200200284EF6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5198729C24F4BD5D00ADC3F7 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 519B1763251B200200284EF6;
-			remoteInfo = AddressIntent;
-		};
 		51A6ACC125199E100094BDFB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5198729C24F4BD5D00ADC3F7 /* Project object */;
@@ -80,7 +70,6 @@
 			files = (
 				51A6ACC325199E100094BDFB /* TodayWeatherExtension.appex in Embed App Extensions */,
 				51A6ACDC2519A2310094BDFB /* SpecialDayExtension.appex in Embed App Extensions */,
-				519B176B251B200200284EF6 /* AddressIntent.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -104,10 +93,6 @@
 		519872C724F4D31300ADC3F7 /* APIEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnum.swift; sourceTree = "<group>"; };
 		519872CA24F4DB9400ADC3F7 /* WebImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImage.swift; sourceTree = "<group>"; };
 		519872CE24F4E3D200ADC3F7 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
-		519B1764251B200200284EF6 /* AddressIntent.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AddressIntent.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		519B1766251B200200284EF6 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
-		519B1768251B200200284EF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		519B176C251B200200284EF6 /* AddressIntent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AddressIntent.entitlements; sourceTree = "<group>"; };
 		51A6ACB225199E0E0094BDFB /* TodayWeatherExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TodayWeatherExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		51A6ACB425199E0E0094BDFB /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		51A6ACB625199E0E0094BDFB /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -130,18 +115,10 @@
 		51EDF3C524F798740019C101 /* AddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressView.swift; sourceTree = "<group>"; };
 		51EDF3C724F799F30019C101 /* AddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressViewModel.swift; sourceTree = "<group>"; };
 		51EDF3C924F79A440019C101 /* AddressModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressModel.swift; sourceTree = "<group>"; };
-		51F4A9BF251B214E0006742E /* SelectCharacterIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCharacterIntent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		519872A124F4BD5D00ADC3F7 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		519B1761251B200200284EF6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -177,7 +154,6 @@
 				519872A624F4BD5D00ADC3F7 /* WeatherSwiftUIDemo */,
 				51A6ACB825199E0E0094BDFB /* TodayWeather */,
 				51A6ACD42519A22F0094BDFB /* SpecialDay */,
-				519B1765251B200200284EF6 /* AddressIntent */,
 				51A6ACB325199E0E0094BDFB /* Frameworks */,
 				519872A524F4BD5D00ADC3F7 /* Products */,
 			);
@@ -189,7 +165,6 @@
 				519872A424F4BD5D00ADC3F7 /* weather.app */,
 				51A6ACB225199E0E0094BDFB /* TodayWeatherExtension.appex */,
 				51A6ACD12519A22F0094BDFB /* SpecialDayExtension.appex */,
-				519B1764251B200200284EF6 /* AddressIntent.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -262,17 +237,6 @@
 				519872BE24F4BE8300ADC3F7 /* APIManager.swift */,
 			);
 			path = APIManager;
-			sourceTree = "<group>";
-		};
-		519B1765251B200200284EF6 /* AddressIntent */ = {
-			isa = PBXGroup;
-			children = (
-				519B176C251B200200284EF6 /* AddressIntent.entitlements */,
-				51F4A9BF251B214E0006742E /* SelectCharacterIntent.swift */,
-				519B1766251B200200284EF6 /* IntentHandler.swift */,
-				519B1768251B200200284EF6 /* Info.plist */,
-			);
-			path = AddressIntent;
 			sourceTree = "<group>";
 		};
 		51A6ACB325199E0E0094BDFB /* Frameworks */ = {
@@ -371,29 +335,11 @@
 			dependencies = (
 				51A6ACC225199E100094BDFB /* PBXTargetDependency */,
 				51A6ACDB2519A2310094BDFB /* PBXTargetDependency */,
-				519B176A251B200200284EF6 /* PBXTargetDependency */,
 			);
 			name = WeatherSwiftUIDemo;
 			productName = WeatherSwiftUIDemo;
 			productReference = 519872A424F4BD5D00ADC3F7 /* weather.app */;
 			productType = "com.apple.product-type.application";
-		};
-		519B1763251B200200284EF6 /* AddressIntent */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 519B176D251B200200284EF6 /* Build configuration list for PBXNativeTarget "AddressIntent" */;
-			buildPhases = (
-				519B1760251B200200284EF6 /* Sources */,
-				519B1761251B200200284EF6 /* Frameworks */,
-				519B1762251B200200284EF6 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = AddressIntent;
-			productName = AddressIntent;
-			productReference = 519B1764251B200200284EF6 /* AddressIntent.appex */;
-			productType = "com.apple.product-type.app-extension";
 		};
 		51A6ACB125199E0E0094BDFB /* TodayWeatherExtension */ = {
 			isa = PBXNativeTarget;
@@ -442,9 +388,6 @@
 					519872A324F4BD5D00ADC3F7 = {
 						CreatedOnToolsVersion = 11.6;
 					};
-					519B1763251B200200284EF6 = {
-						CreatedOnToolsVersion = 12.0;
-					};
 					51A6ACB125199E0E0094BDFB = {
 						CreatedOnToolsVersion = 12.0;
 					};
@@ -469,7 +412,6 @@
 				519872A324F4BD5D00ADC3F7 /* WeatherSwiftUIDemo */,
 				51A6ACB125199E0E0094BDFB /* TodayWeatherExtension */,
 				51A6ACD02519A22F0094BDFB /* SpecialDayExtension */,
-				519B1763251B200200284EF6 /* AddressIntent */,
 			);
 		};
 /* End PBXProject section */
@@ -485,13 +427,6 @@
 				5118800924FC99B600E8D59D /* weather.json in Resources */,
 				519872B124F4BD5F00ADC3F7 /* Preview Assets.xcassets in Resources */,
 				519872AE24F4BD5F00ADC3F7 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		519B1762251B200200284EF6 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -537,15 +472,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		519B1760251B200200284EF6 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				519B1767251B200200284EF6 /* IntentHandler.swift in Sources */,
-				51F4A9C0251B214E0006742E /* SelectCharacterIntent.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		51A6ACAE25199E0E0094BDFB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -568,11 +494,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		519B176A251B200200284EF6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 519B1763251B200200284EF6 /* AddressIntent */;
-			targetProxy = 519B1769251B200200284EF6 /* PBXContainerItemProxy */;
-		};
 		51A6ACC225199E100094BDFB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 51A6ACB125199E0E0094BDFB /* TodayWeatherExtension */;
@@ -765,52 +686,6 @@
 			};
 			name = Release;
 		};
-		519B176E251B200200284EF6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = AddressIntent/AddressIntent.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = J6VFVU93Z9;
-				INFOPLIST_FILE = AddressIntent/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.zcc.WeatherSwiftUIDemo.AddressIntent;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		519B176F251B200200284EF6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = AddressIntent/AddressIntent.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = J6VFVU93Z9;
-				INFOPLIST_FILE = AddressIntent/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.zcc.WeatherSwiftUIDemo.AddressIntent;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 		51A6ACC625199E100094BDFB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -930,15 +805,6 @@
 			buildConfigurations = (
 				519872B924F4BD6000ADC3F7 /* Debug */,
 				519872BA24F4BD6000ADC3F7 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		519B176D251B200200284EF6 /* Build configuration list for PBXNativeTarget "AddressIntent" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				519B176E251B200200284EF6 /* Debug */,
-				519B176F251B200200284EF6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
