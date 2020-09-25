@@ -10,7 +10,7 @@ import WidgetKit
 import SwiftUI
 
 /// [0, x)
-let kRandomInt = Int(arc4random()) % 5
+let kRandomInt = Int(arc4random()) % 7
 
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
@@ -26,7 +26,6 @@ struct Provider: TimelineProvider {
         /// 随机数
         let now = Date()
         let timeline = Timeline(entries: [SimpleEntry(date: now, imageIndex: kRandomInt)], policy: .after(now.addingTimeInterval(60.0 * 30.0)))
-        
         completion(timeline)
     }
 }
@@ -52,7 +51,7 @@ struct SimpleEntry: TimelineEntry {
     }
     var dateFormatter: String {
         let hour = self._calendar.dateComponents([.hour], from: self._specilDay, to: self.date).hour ?? 0
-        return "\(hour)小时"
+        return "一起度过\(hour)小时"
     }
 }
 
@@ -64,17 +63,20 @@ struct SpecialDayEntryView : View {
             Image("love\(entry.imageIndex)").resizable().aspectRatio(contentMode: .fill)
             VStack {
                 Text("我们在一起已经").font(.system(size: 14.0, weight: .semibold)).modifier(ContentTextModifier())
-                Text("\(entry.day)").font(.custom("DINCond-Bold", size: 60.0)).modifier(ContentTextModifier()).padding(4.0)
+                HStack(alignment: .bottom, spacing: 0.0) {
+                    Text("\(entry.day)").font(.custom("DINCond-Bold", size: 60.0)).modifier(ContentTextModifier()).padding(4.0)
+                    Text("天").font(.system(size: 12.0, weight: .bold)).modifier(ContentTextModifier()).offset(y: -12.0)
+                }
                 Text(entry.dateFormatter).font(.system(size: 12.0, weight: .bold)).modifier(ContentTextModifier())
             }
-        }.foregroundColor(.white)
+        }.foregroundColor(Color.white.opacity(0.8))
     }
 }
 
 // MARK: -文字内容样式
 struct ContentTextModifier: ViewModifier {
     func body(content: Content) -> some View {
-        content.shadow(color: .init(UIColor.black.withAlphaComponent(0.8)), radius: 10, x: 0.0, y: 0.0)
+        content.shadow(color: .init(UIColor.black.withAlphaComponent(0.4)), radius: 10, x: 0.0, y: 0.0)
     }
 }
 
