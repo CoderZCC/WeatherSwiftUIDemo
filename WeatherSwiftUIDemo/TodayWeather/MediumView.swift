@@ -20,7 +20,9 @@ struct MediumView: View {
                     SmallContentView(now: model?.now)
                     
                     VStack(spacing: 10.0) {
-                        Text("\(model?.now?.aqi ?? 0) \(model?.now?.aqiDesc ?? "")" ).font(.system(size: 14.0, weight: .semibold)).padding(EdgeInsets(top: 2.0, leading: 6.0, bottom: 2.0, trailing: 6.0)).background(model?.now?.bgColor).cornerRadius(6.0)
+//                        Text("\(model?.now?.aqi ?? 0) \(model?.now?.aqiDesc ?? "")" ).font(.system(size: 14.0, weight: .semibold)).padding(EdgeInsets(top: 2.0, leading: 6.0, bottom: 2.0, trailing: 6.0)).background(model?.now?.bgColor).cornerRadius(6.0)
+                        
+                        Text("\(model?.now?.aqi ?? 0) \(model?.now?.aqiDesc ?? "")" ).font(.system(size: 14.0, weight: .semibold)).padding(EdgeInsets(top: 2.0, leading: 6.0, bottom: 2.0, trailing: 6.0)).background(Color.green).cornerRadius(6.0)
                         
                         Text(model?.now?.humidity ?? "").font(.system(size: 14.0, weight: .semibold))
                         
