@@ -108,7 +108,7 @@ struct Provider: IntentTimelineProvider {
                 break
             }
         }
-        let apiPath: String = "http://www.ccserver.top/api/v1/weather?addressId=\(addressId ?? 276)"
+        let apiPath: String = "http://47.93.215.20/api/v1/weather?addressId=\(addressId ?? 276)"
         var request = URLRequest(url: URL(string: apiPath)!, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 60.0)
         request.addValue("MTU4NzczMzcyNzUzMzEzMTp0ZXN0", forHTTPHeaderField: "device-token")
         

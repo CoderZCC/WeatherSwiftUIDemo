@@ -12,7 +12,7 @@ let kDebug: Bool = false
 //let kDebug: Bool = true
 
 var kWindow: UIWindow?
-let kBasePath: String = "http://www.ccserver.top"
+let kBasePath: String = "http://47.93.215.20"
 let kScreenW = UIScreen.main.bounds.width
 let kScreenH = UIScreen.main.bounds.height
 let kTopSafeH: CGFloat = kWindow?.safeAreaInsets.top ?? 20.0
