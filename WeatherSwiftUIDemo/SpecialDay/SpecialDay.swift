@@ -10,7 +10,7 @@ import WidgetKit
 import SwiftUI
 
 /// [0, x)
-let kRandomInt = Int(arc4random()) % 7
+let kRandomInt = Int(arc4random()) % 6
 
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
@@ -23,9 +23,10 @@ struct Provider: TimelineProvider {
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+        let num = Int(arc4random()) % 6
         /// 随机数
         let now = Date()
-        let timeline = Timeline(entries: [SimpleEntry(date: now, imageIndex: kRandomInt)], policy: .after(now.addingTimeInterval(60.0 * 30.0)))
+        let timeline = Timeline(entries: [SimpleEntry(date: now, imageIndex: num)], policy: .after(now.addingTimeInterval(60.0 * 30.0)))
         completion(timeline)
     }
 }
